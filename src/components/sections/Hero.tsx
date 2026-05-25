@@ -32,13 +32,13 @@ export function Hero() {
         aria-hidden
       />
 
-      <div className="container-gallery relative z-10 flex h-full items-end px-6 pb-[10.5rem] pt-36 min-[769px]:pb-20 lg:pb-28 lg:pt-44">
+      <div className="container-gallery relative z-10 flex h-full items-end pb-[10.5rem] pt-36 min-[769px]:px-6 min-[769px]:pb-20 lg:pb-28 lg:pt-44">
         <div className="max-w-[48rem] text-left">
           <FadeIn>
             <p className="text-label mb-10 max-w-[18rem] !tracking-[0.12em] leading-[1.5] text-white/78 sm:max-w-none sm:!tracking-[0.08em]">
               INTERNATIONAL CURATORIAL COLLECTIVE / EST. 2021
             </p>
-            <p className="text-label mb-5 text-white/70">CURRENTLY</p>
+            <p className="text-label mb-5 text-white/70">LATEST</p>
             <h1 className="max-w-[44rem] font-display text-[2.4rem] font-medium leading-[0.92] tracking-[-0.03em] text-white sm:text-[clamp(3rem,5vw,5.75rem)]">
               Natura Naturans,
               <br />
