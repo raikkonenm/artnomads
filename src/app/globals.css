@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+@theme {
+  --color-void: #111111;
+  --color-ash: #1a1a1a;
+  --color-charcoal: #242424;
+  --color-iron: #3a3a3a;
+  --color-steel: #595959;
+  --color-fog: #777777;
+  --color-silver: #9a9a9a;
+  --color-bone: #d8d4cb;
+  --color-paper: #ffffff;
+  --color-linen: #ffffff;
+  --color-chalk: #ffffff;
+
+  --font-display: var(--font-sf-display), "SF Pro Display", system-ui, sans-serif;
+  --font-sans: var(--font-sf-text), "SF Pro Text", system-ui, sans-serif;
+
+  --spacing-section: 120px;
+  --spacing-section-lg: 120px;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #ffffff;
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    min-width: 320px;
+    overflow-x: hidden;
+    background: #ffffff;
+    color: var(--color-void);
+    font-family: var(--font-sans);
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: -20%;
+    z-index: 9999;
+    width: 140%;
+    height: 140%;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+    mix-blend-mode: multiply;
+    opacity: 0.006;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-void);
+    color: var(--color-chalk);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--color-void);
+    outline-offset: 4px;
+  }
+
+  img,
+  video {
+    display: block;
+    max-width: 100%;
+  }
+
+  a,
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--font-display); }
+  .font-sans { font-family: var(--font-sans); }
+
+  .text-label {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  .section-light {
+    background: var(--color-linen);
+    color: var(--color-void);
+  }
+
+  .section-paper {
+    background: var(--color-paper);
+    color: var(--color-void);
+  }
+
+  .section-dark {
+    background: var(--color-void);
+    color: var(--color-chalk);
+  }
+
+  .section-ash {
+    background: var(--color-linen);
+    color: var(--color-void);
+  }
+
+  .container-gallery {
+    width: min(100% - 3rem, 1680px);
+    margin-inline: auto;
+  }
+
+  @media (min-width: 1024px) {
+    .post-hero-narrow .container-gallery {
+      width: min(88.2vw, 1640px);
+    }
+  }
+
+  .link-editorial {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .link-editorial::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -0.18rem;
+    left: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.42s ease;
+  }
+
+  .link-editorial:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 36s linear infinite;
+  }
+
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  .rule-art {
+    height: 1px;
+    background: currentColor;
+    opacity: 0.12;
+  }
+
+  .text-ghost {
+    color: transparent;
+    -webkit-text-stroke: 1px currentColor;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .image-burn {
+    filter: saturate(0.92) contrast(1.02);
+  }
+}
