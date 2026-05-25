@@ -35,11 +35,11 @@ export function Hero() {
       <div className="container-gallery relative z-10 flex h-full items-end px-6 pb-20 pt-36 lg:pb-28 lg:pt-44">
         <div className="max-w-[48rem] text-left">
           <FadeIn>
-            <p className="text-label mb-10 max-w-[18rem] leading-[1.5] text-white/78 sm:max-w-none">
+            <p className="text-label mb-10 max-w-[18rem] !tracking-[0.12em] leading-[1.5] text-white/78 sm:max-w-none sm:!tracking-[0.08em]">
               INTERNATIONAL CURATORIAL COLLECTIVE / EST. 2021
             </p>
             <p className="text-label mb-5 text-white/70">CURRENTLY</p>
-            <h1 className="max-w-[44rem] font-display text-[clamp(3rem,5vw,5.75rem)] font-medium leading-[0.92] tracking-[-0.03em] text-white">
+            <h1 className="max-w-[44rem] font-display text-[2.4rem] font-medium leading-[0.92] tracking-[-0.03em] text-white sm:text-[clamp(3rem,5vw,5.75rem)]">
               Natura Naturans,
               <br />
               Natura Naturata
@@ -47,7 +47,7 @@ export function Hero() {
             <p className="mt-8 text-[clamp(1rem,1.2vw,1.22rem)] font-medium leading-[1.5] text-white/88">
               Fatma Lootah / Chunkook Lee
             </p>
-            <p className="mt-6 text-sm leading-[1.75] text-white/74">
+            <p className="mt-10 text-sm leading-[1.75] text-white/74 sm:mt-6">
               Art Dubai — Booth X26
               <br />
               RARARES Art Gallery

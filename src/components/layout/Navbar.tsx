@@ -204,7 +204,7 @@ export function Navbar() {
                         <span className="text-label text-void/35">
                           {String(index + 1).padStart(2, "0")}
                         </span>
-                        <span className="font-display text-[clamp(2.2rem,13vw,4rem)] font-medium leading-none">
+                        <span className="font-display text-[2.25rem] font-medium leading-none sm:text-[2.375rem]">
                           {item.label}
                         </span>
                       </Link>
@@ -213,7 +213,7 @@ export function Navbar() {
                         <span className="text-label text-void/35">
                           {String(index + 1).padStart(2, "0")}
                         </span>
-                        <span className="font-display text-[clamp(2.2rem,13vw,4rem)] font-medium leading-none">
+                        <span className="font-display text-[2.25rem] font-medium leading-none sm:text-[2.375rem]">
                           {item.label}
                         </span>
                       </div>
