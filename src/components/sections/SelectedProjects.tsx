@@ -34,8 +34,43 @@ function ProjectFeature({ project }: { project: Project }) {
 
   return (
     <article id={project.id} className="border-t border-black/10 py-[var(--spacing-section)]">
+      {imageLeft && (
+        <div className="container-gallery min-[769px]:hidden">
+          <Link href="/exhibitions/body-is-the-foreign-place" className="group block">
+            <div className="relative aspect-[16/10] overflow-hidden bg-white">
+              <Image
+                src={project.imageUrl}
+                alt={project.imageAlt}
+                fill
+                sizes="100vw"
+                className="object-cover image-burn transition-transform duration-700 ease-out group-hover:scale-[1.014]"
+              />
+            </div>
+          </Link>
+
+          <div className="pt-8">
+            <p className="text-label text-void/55">RARARES ART GALLERY / ART CENTRAL</p>
+            <h3 className="mt-6 font-display text-[clamp(1.45rem,2vw,2.05rem)] font-medium leading-[1.08] text-void">
+              <Link
+                href="/exhibitions/body-is-the-foreign-place"
+                className="transition-opacity duration-300 hover:opacity-60"
+              >
+                {project.title}
+              </Link>
+            </h3>
+            <p className="mt-5 text-sm leading-[1.45] text-void/58">
+              {project.year}, {project.city}
+            </p>
+            <p className="mt-8 text-[0.94rem] leading-[1.72] text-void/64">
+              {project.description}
+            </p>
+          </div>
+        </div>
+      )}
       <div
-        className={`container-gallery grid gap-10 lg:gap-12 xl:gap-14 ${
+        className={`container-gallery gap-10 lg:gap-12 xl:gap-14 ${
+          imageLeft ? "hidden min-[769px]:grid" : "grid"
+        } ${
           imageLeft
             ? "lg:grid-cols-[minmax(0,1fr)_minmax(18rem,25rem)]"
             : "lg:grid-cols-[minmax(18rem,25rem)_minmax(0,1fr)]"
