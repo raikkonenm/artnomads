@@ -1,6 +1,7 @@
 "use client";
 
 import { FadeIn } from "@/components/ui/FadeIn";
+import { useState, type FormEvent } from "react";
 
 const INQUIRY_ROLES = ["Artist", "Gallery / Institution", "Collector", "Press / Media", "Other"];
 
@@ -15,8 +16,44 @@ const PROJECT_TYPES = [
 ];
 
 export function NewsletterCTA() {
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    const form = event.currentTarget;
+
+    if (!form.reportValidity() || status === "sending") {
+      return;
+    }
+
+    const formData = new FormData(form);
+    setStatus("sending");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          role: formData.get("inquiry-role"),
+          projectType: formData.get("project-type"),
+          name: formData.get("name"),
+          email: formData.get("email"),
+          message: formData.get("message"),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Inquiry delivery failed.");
+      }
+
+      form.reset();
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
@@ -52,6 +89,7 @@ export function NewsletterCTA() {
                         type="radio"
                         name="inquiry-role"
                         value={role}
+                        required
                         className="h-3 w-3 appearance-none rounded-full border border-black/30 bg-transparent checked:border-black checked:bg-void"
                       />
                       {role}
@@ -68,6 +106,7 @@ export function NewsletterCTA() {
                   id="project-type"
                   name="project-type"
                   defaultValue=""
+                  required
                   className="h-12 w-full border border-black/16 bg-transparent px-4 text-sm text-void/70 transition-colors duration-300 focus:border-black/45 focus:outline-none"
                 >
                   <option value="" disabled>
@@ -87,6 +126,7 @@ export function NewsletterCTA() {
                   <input
                     name="name"
                     type="text"
+                    required
                     className="h-12 w-full border border-black/16 bg-transparent px-4 text-sm text-void placeholder:text-void/30 transition-colors duration-300 focus:border-black/45 focus:outline-none"
                   />
                 </label>
@@ -95,6 +135,7 @@ export function NewsletterCTA() {
                   <input
                     name="email"
                     type="email"
+                    required
                     className="h-12 w-full border border-black/16 bg-transparent px-4 text-sm text-void placeholder:text-void/30 transition-colors duration-300 focus:border-black/45 focus:outline-none"
                   />
                 </label>
@@ -108,6 +149,7 @@ export function NewsletterCTA() {
                   id="message"
                   name="message"
                   rows={7}
+                  required
                   placeholder="Tell us about your project, ideas, or goals..."
                   className="w-full resize-none border border-black/16 bg-transparent px-4 py-4 text-sm leading-[1.7] text-void placeholder:text-void/32 transition-colors duration-300 focus:border-black/45 focus:outline-none"
                 />
@@ -116,15 +158,28 @@ export function NewsletterCTA() {
               <div className="grid gap-5 py-7 sm:grid-cols-[auto_minmax(0,1fr)] sm:items-center">
                 <button
                   type="submit"
-                  className="h-12 bg-void px-7 text-label text-white transition-opacity duration-300 hover:opacity-82"
+                  disabled={status === "sending"}
+                  className="h-12 bg-void px-7 text-label text-white transition-opacity duration-300 hover:opacity-82 disabled:cursor-wait disabled:opacity-55"
                 >
-                  Send Inquiry
+                  {status === "sending" ? "Sending..." : "Send Inquiry"}
                 </button>
-                <p className="text-sm leading-[1.65] text-void/45">
-                  We read every message carefully.
-                  <br />
-                  Response time: 2–4 business days.
-                </p>
+                <div>
+                  <p className="text-sm leading-[1.65] text-void/45">
+                    We read every message carefully.
+                    <br />
+                    Response time: 2–4 business days.
+                  </p>
+                  {status === "success" && (
+                    <p className="mt-3 text-sm text-void/70" role="status">
+                      Thank you. Your inquiry has been received.
+                    </p>
+                  )}
+                  {status === "error" && (
+                    <p className="mt-3 text-sm text-void/70" role="alert">
+                      Your inquiry could not be sent. Please try again.
+                    </p>
+                  )}
+                </div>
               </div>
 
               <div className="flex flex-wrap gap-x-8 gap-y-3 border-t border-black/10 pt-6">
