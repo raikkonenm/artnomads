@@ -32,7 +32,7 @@ export function Hero() {
         aria-hidden
       />
 
-      <div className="container-gallery relative z-10 flex h-full items-end px-6 pb-20 pt-36 lg:pb-28 lg:pt-44">
+      <div className="container-gallery relative z-10 flex h-full items-end px-6 pb-[10.5rem] pt-36 min-[769px]:pb-20 lg:pb-28 lg:pt-44">
         <div className="max-w-[48rem] text-left">
           <FadeIn>
             <p className="text-label mb-10 max-w-[18rem] !tracking-[0.12em] leading-[1.5] text-white/78 sm:max-w-none sm:!tracking-[0.08em]">

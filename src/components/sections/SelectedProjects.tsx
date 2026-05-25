@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { ARCHIVE_PROJECTS, FEATURED_PROJECTS, type Project } from "@/lib/data";
@@ -162,60 +162,12 @@ function ExhibitionGridCard({ project, idx }: { project: Project; idx: number })
 
 function ArchivePanel() {
   const [activeProject, setActiveProject] = useState<Project>(ARCHIVE_PROJECTS[0]);
-  const projectRows = useRef(new Map<string, HTMLDivElement>());
   const artists = activeProject.artists?.length ? activeProject.artists : ["Chunkook Lee"];
   const curators = activeProject.curators?.length ? activeProject.curators : ["ACN Curatorial Team"];
 
-  useEffect(() => {
-    const mobileQuery = window.matchMedia("(max-width: 1023px)");
-    let observer: IntersectionObserver | undefined;
-
-    const observeMobileRows = () => {
-      observer?.disconnect();
-
-      if (!mobileQuery.matches) {
-        return;
-      }
-
-      const stickyHeight = Math.min(Math.max(window.innerHeight * 0.42, 272), 384);
-      const activationTop = Math.round(76 + stickyHeight + 16);
-      const activationBottom = Math.round(window.innerHeight * 0.34);
-
-      observer = new IntersectionObserver(
-        (entries) => {
-          const activeEntry = entries
-            .filter((entry) => entry.isIntersecting)
-            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
-          const projectId = (activeEntry?.target as HTMLElement | undefined)?.dataset.projectId;
-          const project = ARCHIVE_PROJECTS.find((item) => item.id === projectId);
-
-          if (project) {
-            setActiveProject((current) => (current.id === project.id ? current : project));
-          }
-        },
-        {
-          rootMargin: `-${activationTop}px 0px -${activationBottom}px 0px`,
-          threshold: [0, 0.2, 0.6],
-        }
-      );
-
-      projectRows.current.forEach((row) => observer?.observe(row));
-    };
-
-    observeMobileRows();
-    mobileQuery.addEventListener("change", observeMobileRows);
-    window.addEventListener("resize", observeMobileRows);
-
-    return () => {
-      observer?.disconnect();
-      mobileQuery.removeEventListener("change", observeMobileRows);
-      window.removeEventListener("resize", observeMobileRows);
-    };
-  }, []);
-
   return (
     <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.38fr)] lg:items-start xl:gap-10">
-      <div className="sticky top-[76px] z-10 bg-white pb-4 lg:hidden">
+      <div className="sticky top-[76px] z-10 bg-white pb-4 min-[769px]:hidden">
         <motion.div
           key={`${activeProject.id}-mobile-image`}
           initial={{ opacity: 0 }}
@@ -246,21 +198,12 @@ function ArchivePanel() {
           return (
             <motion.div
               key={project.id}
-              ref={(node) => {
-                if (node) {
-                  projectRows.current.set(project.id, node);
-                } else {
-                  projectRows.current.delete(project.id);
-                }
-              }}
-              data-project-id={project.id}
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ delay: (index % 8) * 0.018, duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
               onMouseEnter={() => setActiveProject(project)}
               onFocusCapture={() => setActiveProject(project)}
-              onTouchStart={() => setActiveProject(project)}
               onClick={() => setActiveProject(project)}
               className={`grid w-full gap-2 border-t border-black/10 px-0 py-3 text-left transition-colors duration-300 md:grid-cols-[5rem_minmax(0,1fr)] md:items-center ${
                 isActive ? "bg-black/[0.035]" : "hover:bg-black/[0.025]"
@@ -289,7 +232,7 @@ function ArchivePanel() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-          className="relative hidden aspect-[4/5] overflow-hidden bg-white lg:block"
+          className="relative hidden aspect-[4/5] overflow-hidden bg-white min-[769px]:block"
         >
           <Image
             src={activeProject.imageUrl}

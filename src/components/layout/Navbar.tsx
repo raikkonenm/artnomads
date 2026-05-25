@@ -18,7 +18,17 @@ const rightNav = [
   { label: "Contact", href: "#contact" },
 ];
 
-const allNav = [...leftNav, ...rightNav];
+const mobilePrimaryNav = [
+  { ...leftNav[0], number: "01" },
+  { ...leftNav[1], number: "02" },
+  { ...leftNav[2], number: "03" },
+  { ...rightNav[2], number: "06" },
+];
+
+const mobileProductNav = [
+  { ...rightNav[0], number: "04" },
+  { ...rightNav[1], number: "05" },
+];
 
 const projectCities = [
   "Hong Kong",
@@ -68,7 +78,7 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-500",
+          "fixed inset-x-0 top-0 z-50 border-b transition-[background-color,color,border-color] duration-300 ease-in-out",
           solidNav
             ? "border-black/10 bg-linen/94 text-void backdrop-blur-md"
             : "border-white/18 bg-transparent text-white"
@@ -196,12 +206,34 @@ export function Navbar() {
           >
             <nav className="container-gallery border-t border-black/10">
               <ul>
-                {allNav.map((item, index) => (
+                {mobilePrimaryNav.map((item, index) => (
                   <motion.li
                     key={item.label}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.05 + index * 0.035, duration: 0.3 }}
+                    className="border-b border-black/10"
+                  >
+                    <Link
+                      href={item.href}
+                      onClick={() => setMenuOpen(false)}
+                      className="grid grid-cols-[3rem_minmax(0,1fr)] items-center py-6"
+                    >
+                      <span className="text-label text-void/35">{item.number}</span>
+                      <span className="min-w-0 font-display text-[2.25rem] font-medium leading-none">
+                        {item.label}
+                      </span>
+                    </Link>
+                  </motion.li>
+                ))}
+              </ul>
+              <ul className="mt-8 border-t border-black/10 pt-2">
+                {mobileProductNav.map((item, index) => (
+                  <motion.li
+                    key={item.label}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 + index * 0.035, duration: 0.3 }}
                     className="border-b border-black/10"
                   >
                     {"external" in item && item.external ? (
@@ -210,37 +242,24 @@ export function Navbar() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => setMenuOpen(false)}
-                        className="grid grid-cols-[3rem_1fr] items-center py-6"
+                        className="grid grid-cols-[3rem_minmax(0,1fr)] items-center py-5"
                       >
-                        <span className="text-label text-void/35">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                        <span className="font-display text-[2.25rem] font-medium leading-none sm:text-[2.375rem]">
+                        <span className="text-label text-void/35">{item.number}</span>
+                        <span className="min-w-0 font-display text-[1.625rem] font-medium leading-none text-void/70">
                           {item.label}
                         </span>
                       </a>
-                    ) : item.href ? (
+                    ) : (
                       <Link
                         href={item.href}
                         onClick={() => setMenuOpen(false)}
-                        className="grid grid-cols-[3rem_1fr] items-center py-6"
+                        className="grid grid-cols-[3rem_minmax(0,1fr)] items-center py-5"
                       >
-                        <span className="text-label text-void/35">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                        <span className="font-display text-[2.25rem] font-medium leading-none sm:text-[2.375rem]">
+                        <span className="text-label text-void/35">{item.number}</span>
+                        <span className="min-w-0 font-display text-[1.625rem] font-medium leading-none text-void/70">
                           {item.label}
                         </span>
                       </Link>
-                    ) : (
-                      <div className="grid grid-cols-[3rem_1fr] items-center py-6">
-                        <span className="text-label text-void/35">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                        <span className="font-display text-[2.25rem] font-medium leading-none sm:text-[2.375rem]">
-                          {item.label}
-                        </span>
-                      </div>
                     )}
                   </motion.li>
                 ))}

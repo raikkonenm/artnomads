@@ -28,6 +28,8 @@
   }
 
   html {
+    max-width: 100%;
+    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background: #ffffff;
@@ -37,6 +39,7 @@
 
   body {
     min-width: 320px;
+    max-width: 100%;
     overflow-x: hidden;
     background: #ffffff;
     color: var(--color-void);
@@ -207,7 +210,13 @@
   }
 }
 
-@media (max-width: 639px) {
+@media (max-width: 768px) {
+  body::after {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
   .mobile-tight-sections {
     --spacing-section: 72px;
   }
