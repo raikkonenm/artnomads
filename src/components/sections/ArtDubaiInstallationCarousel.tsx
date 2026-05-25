@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
+import { ImageLightbox, type LightboxImage } from "@/components/ui/ImageLightbox";
 
 type InstallationImage = {
   src: string;
@@ -43,8 +44,9 @@ export function ArtDubaiInstallationCarousel({
   title?: string;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
-  const drag = useRef({ active: false, startX: 0, scrollLeft: 0 });
+  const drag = useRef({ active: false, moved: false, startX: 0, scrollLeft: 0 });
   const [missingImages, setMissingImages] = useState<Record<string, boolean>>({});
+  const [selectedImage, setSelectedImage] = useState<LightboxImage | null>(null);
 
   const scrollBySlide = (direction: number) => {
     const container = scrollRef.current;
@@ -67,6 +69,7 @@ export function ArtDubaiInstallationCarousel({
 
     drag.current = {
       active: true,
+      moved: false,
       startX: event.clientX,
       scrollLeft: container.scrollLeft,
     };
@@ -77,6 +80,10 @@ export function ArtDubaiInstallationCarousel({
     const container = scrollRef.current;
 
     if (!container || !drag.current.active) return;
+
+    if (Math.abs(event.clientX - drag.current.startX) > 5) {
+      drag.current.moved = true;
+    }
 
     container.scrollLeft = drag.current.scrollLeft - (event.clientX - drag.current.startX);
   };
@@ -117,19 +124,28 @@ export function ArtDubaiInstallationCarousel({
                   {image.alt}
                 </div>
               ) : (
-                <Image
-                  src={image.src}
-                  alt={image.alt}
-                  fill
-                  sizes="(max-width: 768px) 88vw, 78vw"
-                  className="object-contain"
-                  onError={() =>
-                    setMissingImages((current) => ({
-                      ...current,
-                      [image.src]: true,
-                    }))
-                  }
-                />
+                <button
+                  type="button"
+                  aria-label={`Open ${image.alt}`}
+                  onClick={() => {
+                    if (!drag.current.moved) setSelectedImage(image);
+                  }}
+                  className="relative h-full w-full cursor-zoom-in"
+                >
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    sizes="(max-width: 768px) 88vw, 78vw"
+                    className="object-contain"
+                    onError={() =>
+                      setMissingImages((current) => ({
+                        ...current,
+                        [image.src]: true,
+                      }))
+                    }
+                  />
+                </button>
               )}
             </figure>
           ))}
@@ -152,6 +168,7 @@ export function ArtDubaiInstallationCarousel({
           {"\u2192"}
         </button>
       </div>
+      <ImageLightbox image={selectedImage} onClose={() => setSelectedImage(null)} />
     </div>
   );
 }

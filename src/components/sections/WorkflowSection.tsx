@@ -88,11 +88,13 @@ export function WorkflowSection() {
                 Built for artists who work internationally.
                 <br />
                 <br />
-                $49
+                <span className="font-display text-[1.65rem] font-semibold leading-none text-void sm:font-sans sm:text-[inherit] sm:font-normal">
+                  $49
+                </span>
               </p>
 
               <a
-                href="https://workflow.art"
+                href="https://www.artcnomad.com/workflow-art"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="link-editorial mt-10 text-label text-void/70 hover:text-void"
@@ -103,15 +105,15 @@ export function WorkflowSection() {
           </div>
 
           <div className="lg:col-start-7 lg:col-span-6">
-            <div className="grid border-b border-black/10 sm:grid-cols-2">
+            <div className="grid grid-cols-2 border-b border-black/10">
               {FEATURES.map((feature, index) => (
                 <FadeIn key={feature.label} delay={0.05 + index * 0.035} direction="up">
-                  <div className="h-full border-t border-black/10 py-7 sm:px-7 sm:[&:nth-child(odd)]:border-r">
-                    <p className="text-label mb-7 text-void/35">0{index + 1}</p>
-                    <h4 className="mb-3 font-display text-[1.25rem] font-medium leading-tight text-void">
+                  <div className="h-full border-t border-black/10 px-3 py-5 [&:nth-child(odd)]:border-r sm:px-7 sm:py-7">
+                    <p className="text-label mb-5 text-void/35 sm:mb-7">0{index + 1}</p>
+                    <h4 className="mb-3 font-display text-[1.05rem] font-medium leading-tight text-void sm:text-[1.25rem]">
                       {feature.label}
                     </h4>
-                    <p className="text-sm leading-[1.7] text-void/55">{feature.desc}</p>
+                    <p className="text-[0.78rem] leading-[1.6] text-void/55 sm:text-sm sm:leading-[1.7]">{feature.desc}</p>
                   </div>
                 </FadeIn>
               ))}

@@ -82,7 +82,7 @@ function PreviewImage({ src, alt, fit = "contain" }: { src: string; alt: string;
 
 export default function WorkflowArtPage() {
   return (
-    <div className="post-hero-narrow section-paper pt-[76px]">
+    <div className="post-hero-narrow mobile-tight-sections section-paper pt-[76px]">
       <section className="container-gallery pb-[var(--spacing-section)] pt-[72px]">
         <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-4">

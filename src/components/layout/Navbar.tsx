@@ -13,7 +13,7 @@ const leftNav = [
 ];
 
 const rightNav = [
-  { label: "FINDART ↗" },
+  { label: "FINDART ↗", href: "https://www.findartplatform.com/", external: true },
   { label: "WORKFLOW.ART", href: "/workflow-art" },
   { label: "Contact", href: "#contact" },
 ];
@@ -135,7 +135,16 @@ export function Navbar() {
             <ul className="hidden items-center gap-8 lg:flex">
               {rightNav.map((item) => (
                 <li key={item.label}>
-                  {item.href ? (
+                  {"external" in item && item.external ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-label opacity-70 transition-opacity duration-300 hover:opacity-100"
+                    >
+                      {item.label}
+                    </a>
+                  ) : item.href ? (
                     <Link href={item.href} className="text-label opacity-70 transition-opacity duration-300 hover:opacity-100">
                       {item.label}
                     </Link>
@@ -151,7 +160,7 @@ export function Navbar() {
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((value) => !value)}
-              className="grid h-10 w-10 place-items-center border border-current/20 transition-colors duration-300 hover:border-current/50 lg:hidden"
+              className="grid h-10 w-10 place-items-center transition-opacity duration-300 hover:opacity-60 lg:hidden"
             >
               <span className="relative block h-4 w-5">
                 <motion.span
@@ -195,7 +204,22 @@ export function Navbar() {
                     transition={{ delay: 0.05 + index * 0.035, duration: 0.3 }}
                     className="border-b border-black/10"
                   >
-                    {item.href ? (
+                    {"external" in item && item.external ? (
+                      <a
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => setMenuOpen(false)}
+                        className="grid grid-cols-[3rem_1fr] items-center py-6"
+                      >
+                        <span className="text-label text-void/35">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <span className="font-display text-[2.25rem] font-medium leading-none sm:text-[2.375rem]">
+                          {item.label}
+                        </span>
+                      </a>
+                    ) : item.href ? (
                       <Link
                         href={item.href}
                         onClick={() => setMenuOpen(false)}

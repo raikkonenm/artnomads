@@ -19,7 +19,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <div className="post-hero-narrow">
+      <div className="post-hero-narrow mobile-tight-sections">
         <CurrentlySection />
         <SelectedProjects />
         <ManifestoSection />

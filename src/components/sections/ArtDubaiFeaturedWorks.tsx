@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { LightboxArtwork } from "@/components/ui/ImageLightbox";
 
 type Work = {
   artist: string;
@@ -161,15 +162,22 @@ function WorkImage({
           {work.title}
         </div>
       ) : (
-        <img
+        <LightboxArtwork
           src={work.src}
           alt={`${work.artist}, ${work.title}, ${work.year}`}
-          className={
+          imageClassName={
             alignToRowHeight
               ? "block h-auto w-full md:h-full md:w-auto md:max-w-full"
               : equalHeight
                 ? "block h-auto w-full md:h-full md:w-full md:object-contain"
                 : "block h-auto w-full"
+          }
+          triggerClassName={
+            alignToRowHeight
+              ? "block w-full cursor-zoom-in md:h-full md:w-auto md:max-w-full"
+              : equalHeight
+                ? "block h-full w-full cursor-zoom-in"
+                : "block w-full cursor-zoom-in"
           }
           onError={() => setMissing(true)}
         />

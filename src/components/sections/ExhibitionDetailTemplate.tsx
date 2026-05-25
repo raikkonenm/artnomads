@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { ArtDubaiInstallationCarousel } from "@/components/sections/ArtDubaiInstallationCarousel";
+import { LightboxArtwork } from "@/components/ui/ImageLightbox";
 import type { Project } from "@/lib/data";
 import type { ExhibitionMedia, ExhibitionMediaItem } from "@/lib/exhibition-media";
 
@@ -19,7 +20,11 @@ function FeaturedWorks({
 
         return (
           <figure key={work.src} className={fullWidth ? "md:col-span-2" : undefined}>
-            <img src={work.src} alt={work.alt} className="block h-auto w-full object-contain" />
+            <LightboxArtwork
+              src={work.src}
+              alt={work.alt}
+              imageClassName="block h-auto w-full object-contain"
+            />
           </figure>
         );
       })}

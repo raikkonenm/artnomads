@@ -93,7 +93,7 @@ function ExhibitionCard({ project }: { project: Project }) {
   const displayProject = { ...project, ...CARD_OVERRIDES[project.id] };
 
   return (
-    <article className="flex min-h-full flex-col border-t border-black/10 pt-6">
+    <article className="flex min-h-full flex-col border-t border-black/10 pt-5 sm:pt-6">
       <Link href={projectHref(project)} className="group block">
         <div className="relative aspect-[16/10] overflow-hidden bg-white">
           <Image
@@ -106,12 +106,12 @@ function ExhibitionCard({ project }: { project: Project }) {
         </div>
       </Link>
 
-      <div className="flex flex-1 flex-col pt-7">
+      <div className="flex flex-1 flex-col pt-5 sm:pt-7">
         <p className="text-label text-void/45">
           {displayProject.city} / {displayProject.year}
         </p>
 
-        <h3 className="mt-5 font-display text-[clamp(1.35rem,1.75vw,1.95rem)] font-medium leading-[1.08] text-void">
+        <h3 className="mt-4 font-display text-[clamp(1.35rem,1.75vw,1.95rem)] font-medium leading-[1.08] text-void sm:mt-5">
           <Link href={projectHref(project)} className="transition-opacity duration-300 hover:opacity-60">
             {displayProject.title}
           </Link>
@@ -121,7 +121,7 @@ function ExhibitionCard({ project }: { project: Project }) {
           {displayProject.venue}
         </p>
 
-        <p className="mt-7 text-[0.92rem] leading-[1.72] text-void/64">
+        <p className="mt-5 text-[0.92rem] leading-[1.72] text-void/64 sm:mt-7">
           {displayProject.description}
         </p>
 
@@ -132,11 +132,11 @@ function ExhibitionCard({ project }: { project: Project }) {
 
 function CurrentlySection({ project }: { project: Project }) {
   return (
-    <section className="border-t border-black/10 py-[var(--spacing-section)]">
+    <section className="border-t border-black/10 pb-10 pt-[var(--spacing-section)] sm:py-[var(--spacing-section)]">
       <div className="container-gallery">
         <h2 className="text-label text-void/45">CURRENTLY</h2>
 
-        <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1.18fr)_minmax(20rem,0.72fr)] lg:gap-14 xl:gap-18">
+        <div className="mt-8 grid gap-8 sm:mt-10 sm:gap-10 lg:grid-cols-[minmax(0,1.18fr)_minmax(20rem,0.72fr)] lg:gap-14 xl:gap-18">
           <Link href={projectHref(project)} className="group block">
             <div className="relative aspect-[16/10] overflow-hidden bg-white">
               <Image
@@ -158,7 +158,7 @@ function CurrentlySection({ project }: { project: Project }) {
               </h3>
             </div>
 
-            <div className="mt-10 grid gap-7">
+            <div className="mt-8 grid gap-5 sm:mt-10 sm:gap-7">
               <div>
                 <p className="text-label mb-2 text-void/35">Artists</p>
                 <p className="text-sm leading-relaxed text-void/62">Fatma Lootah / Chunkook Lee</p>
@@ -171,7 +171,7 @@ function CurrentlySection({ project }: { project: Project }) {
                 <p className="text-label mb-2 text-void/35">Dates</p>
                 <p className="text-sm leading-relaxed text-void/62">14–17 May 2026</p>
               </div>
-              <Link href={projectHref(project)} className="link-editorial mt-4 inline-flex w-fit text-label text-void">
+              <Link href={projectHref(project)} className="link-editorial mt-3 inline-flex w-fit text-label text-void sm:mt-4">
                 VISIT EXHIBITION ↗
               </Link>
             </div>
@@ -200,9 +200,9 @@ export function ExhibitionsPageContent() {
   const showCurrent = currentProject ? matchesCity(currentProject, activeCity) : false;
 
   return (
-    <main className="section-light pt-[76px]">
-      <section className="container-gallery pb-16 pt-[var(--spacing-section)]">
-        <div className="grid gap-8 border-b border-black/10 pb-10 lg:grid-cols-[minmax(14rem,0.36fr)_minmax(0,0.64fr)] lg:items-end">
+    <main className="mobile-tight-sections section-light pt-[76px]">
+      <section className="container-gallery pb-10 pt-[var(--spacing-section)] sm:pb-16">
+        <div className="grid gap-6 border-b border-black/10 pb-7 sm:gap-8 sm:pb-10 lg:grid-cols-[minmax(14rem,0.36fr)_minmax(0,0.64fr)] lg:items-end">
           <h1 className="font-display text-[clamp(2.55rem,5vw,5.8rem)] font-medium leading-[0.98] tracking-[-0.03em] text-void">
             Exhibitions
           </h1>
@@ -212,7 +212,7 @@ export function ExhibitionsPageContent() {
               <Link
                 key={city}
                 href={activeCity === city ? "/exhibitions" : `/exhibitions?city=${citySlug(city)}`}
-                className={`whitespace-nowrap text-label transition-opacity duration-300 hover:opacity-100 ${
+                className={`whitespace-nowrap text-label !text-[0.9rem] transition-opacity duration-300 hover:opacity-100 sm:!text-[0.875rem] ${
                   activeCity === city ? "opacity-100" : "opacity-45"
                 }`}
               >
@@ -226,12 +226,12 @@ export function ExhibitionsPageContent() {
 
       {currentProject && showCurrent && <CurrentlySection project={currentProject} />}
 
-      <section className="border-t border-black/10 py-[var(--spacing-section)]">
+      <section className="border-t border-black/10 pb-[var(--spacing-section)] pt-10 sm:py-[var(--spacing-section)]">
         <div className="container-gallery">
           <h2 className="text-label text-void/45">PREVIOUS EXHIBITIONS</h2>
 
           {visiblePrevious.length > 0 ? (
-            <div className="mt-10 grid gap-x-10 gap-y-16 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-14">
+            <div className="mt-8 grid gap-x-10 gap-y-12 sm:mt-10 sm:gap-y-16 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-14">
               {visiblePrevious.map((project) => (
                 <ExhibitionCard key={project.id} project={project} />
               ))}

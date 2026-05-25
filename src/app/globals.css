@@ -206,3 +206,9 @@
     filter: saturate(0.92) contrast(1.02);
   }
 }
+
+@media (max-width: 639px) {
+  .mobile-tight-sections {
+    --spacing-section: 72px;
+  }
+}

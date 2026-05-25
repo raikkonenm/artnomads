@@ -47,7 +47,7 @@ function NetworkList({ label, items }: { label: string; items: string[] }) {
       ) : (
         <div className="mb-7 h-[1.05rem]" aria-hidden />
       )}
-      <ul className="grid gap-4">
+      <ul className="grid gap-3 md:gap-4">
         {items.map((item) => (
           <li
             key={item}
@@ -70,18 +70,26 @@ export function WorkWithSection() {
             <h3 className="text-label text-void/45">
               Network
             </h3>
-            <div className="mt-10 grid gap-10 md:grid-cols-3 md:gap-14 lg:gap-20">
+            <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3 md:gap-14 lg:gap-20">
               <div>
                 <NetworkList label="ARTISTS" items={ARTISTS_COLUMN_ONE} />
                 <Link
                   href="/practice"
-                  className="link-editorial mt-16 inline-flex w-fit whitespace-nowrap font-display text-[clamp(1.45rem,2.4vw,2.35rem)] font-medium leading-tight text-void"
+                  className="link-editorial mt-16 hidden w-fit whitespace-nowrap font-display text-[clamp(1.45rem,2.4vw,2.35rem)] font-medium leading-tight text-void md:inline-flex"
                 >
                   Building your international practice →
                 </Link>
               </div>
               <NetworkList label="" items={ARTISTS_COLUMN_TWO} />
-              <NetworkList label="GALLERIES & INSTITUTIONS" items={INSTITUTIONS} />
+              <div className="col-span-2 mt-2 md:col-span-1 md:mt-0">
+                <NetworkList label="GALLERIES & INSTITUTIONS" items={INSTITUTIONS} />
+              </div>
+              <Link
+                href="/practice"
+                className="link-editorial col-span-2 mt-4 inline-flex w-fit font-display text-[1.5rem] font-medium leading-tight text-void md:hidden"
+              >
+                Building your international practice →
+              </Link>
             </div>
           </div>
         </div>
