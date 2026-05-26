@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
 
-const RESEND_EMAIL_ENDPOINT = "https://api.resend.com/emails";
-const DEFAULT_TO_EMAIL = "artcnomads@gmail.com";
+const CONTACT_FROM_EMAIL = "ArtNomads Contact <onboarding@resend.dev>";
+const CONTACT_TO_EMAIL = "artcnomads@gmail.com";
+const CONTACT_SUBJECT = "New inquiry — ArtNomads";
 const MAX_MESSAGE_LENGTH = 10_000;
 
 type ContactPayload = {
@@ -50,11 +52,9 @@ export async function POST(request: Request) {
   }
 
   const resendApiKey = process.env.RESEND_API_KEY;
-  const fromEmail = process.env.CONTACT_FROM_EMAIL;
-  const toEmail = process.env.CONTACT_TO_EMAIL ?? DEFAULT_TO_EMAIL;
 
-  if (!resendApiKey || !fromEmail) {
-    console.error("Contact delivery is not configured. Set RESEND_API_KEY and CONTACT_FROM_EMAIL.");
+  if (!resendApiKey) {
+    console.error("Contact delivery is not configured. Set RESEND_API_KEY.");
     return NextResponse.json({ error: "Inquiry delivery is unavailable." }, { status: 500 });
   }
 
@@ -71,28 +71,21 @@ export async function POST(request: Request) {
   ].join("\n");
 
   try {
-    const response = await fetch(RESEND_EMAIL_ENDPOINT, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${resendApiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        from: fromEmail,
-        to: [toEmail],
-        reply_to: email,
-        subject: `New inquiry from ${name}`,
-        text: emailText,
-      }),
+    const resend = new Resend(resendApiKey);
+    const { data, error } = await resend.emails.send({
+      from: CONTACT_FROM_EMAIL,
+      to: [CONTACT_TO_EMAIL],
+      replyTo: email,
+      subject: CONTACT_SUBJECT,
+      text: emailText,
     });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Resend delivery failed:", response.status, errorText);
+    if (error) {
+      console.error("Resend delivery failed:", error);
       return NextResponse.json({ error: "Inquiry delivery failed." }, { status: 502 });
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, id: data?.id });
   } catch (error) {
     console.error("Contact delivery request failed:", error);
     return NextResponse.json({ error: "Inquiry delivery failed." }, { status: 502 });
