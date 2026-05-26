@@ -7,7 +7,7 @@ import { TEAM } from "@/lib/data";
 export function ManifestoSection() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = useState(true);
-  const [activeMember, setActiveMember] = useState(TEAM[0]);
+  const [activeMember, setActiveMember] = useState<(typeof TEAM)[number] | null>(null);
 
   const toggleMute = () => {
     const video = videoRef.current;
@@ -58,45 +58,59 @@ export function ManifestoSection() {
                 <span id="team" className="sr-only scroll-mt-28" aria-hidden />
                 <p className="text-label mb-7 text-void/35">People</p>
 
-                <div className="hidden grid-cols-[minmax(11rem,0.78fr)_minmax(14rem,1fr)] gap-8 md:grid">
+                <div
+                  className="hidden grid-cols-[minmax(11rem,0.78fr)_minmax(14rem,1fr)] gap-8 min-[769px]:grid"
+                  onMouseLeave={() => setActiveMember(null)}
+                >
                   <div className="border-b border-black/10">
                     {TEAM.map((member) => (
-                      <button
-                        key={member.id}
-                        type="button"
-                        onMouseEnter={() => setActiveMember(member)}
-                        onFocus={() => setActiveMember(member)}
-                        className={`block w-full border-t border-black/10 py-4 text-left transition-colors duration-300 ${
-                          activeMember.id === member.id ? "text-void" : "text-void/58 hover:text-void"
-                        }`}
-                      >
-                        <span className="block text-label text-void/40">{member.role}</span>
-                        <span className="mt-2 block font-display text-[clamp(1.1rem,1.3vw,1.35rem)] leading-tight">
+                      <div key={member.id} className="border-t border-black/10 py-4">
+                        <p className="text-label text-void/40">{member.role}</p>
+                        <button
+                          type="button"
+                          onMouseEnter={() => setActiveMember(member)}
+                          onFocus={() => setActiveMember(member)}
+                          onBlur={() => setActiveMember(null)}
+                          className={`mt-2 block w-full text-left font-display text-[clamp(1.1rem,1.3vw,1.35rem)] leading-tight transition-colors duration-300 ${
+                            activeMember?.id === member.id ? "text-void" : "text-void/58 hover:text-void"
+                          }`}
+                        >
                           {member.name}
-                        </span>
-                      </button>
+                        </button>
+                      </div>
                     ))}
                   </div>
 
-                  <div className="border-t border-black/10 pt-4" aria-live="polite">
-                    <p className="text-label text-void/40">{activeMember.role}</p>
-                    <p className="mt-3 font-display text-[1.18rem] font-medium leading-tight text-void">
-                      {activeMember.name}
-                    </p>
-                    <p className="mt-4 text-sm leading-[1.72] text-void/58">
-                      {activeMember.bio}
-                    </p>
-                  </div>
+                  {activeMember && (
+                    <div className="border-t border-black/10 pt-4" aria-live="polite">
+                      <p className="text-sm leading-[1.72] text-void/58">
+                        {activeMember.bio}
+                      </p>
+                    </div>
+                  )}
                 </div>
 
-                <div className="grid gap-6 md:hidden">
+                <div className="grid gap-6 min-[769px]:hidden">
                   {TEAM.map((member) => (
                     <div key={member.id} className="border-t border-black/10 pt-4">
                       <p className="text-label text-void/40">{member.role}</p>
-                      <p className="mt-2 font-display text-[1.25rem] font-medium leading-tight text-void">
-                        {member.name}
-                      </p>
-                      <p className="mt-3 text-sm leading-[1.72] text-void/58">{member.bio}</p>
+                      <button
+                        type="button"
+                        aria-expanded={activeMember?.id === member.id}
+                        onClick={() =>
+                          setActiveMember(activeMember?.id === member.id ? null : member)
+                        }
+                        className="mt-2 block w-full text-left"
+                      >
+                        <span className="block font-display text-[1.25rem] font-medium leading-tight text-void">
+                          {member.name}
+                        </span>
+                      </button>
+                      {activeMember?.id === member.id && (
+                        <p className="mt-4 text-sm leading-[1.72] text-void/58">
+                          {member.bio}
+                        </p>
+                      )}
                     </div>
                   ))}
                 </div>
