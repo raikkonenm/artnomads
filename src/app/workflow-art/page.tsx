@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { WorkflowBrowserMockup } from "@/components/sections/WorkflowHeroCarousel";
+import { WorkflowAccessRequestForm } from "@/components/sections/WorkflowAccessRequestForm";
 
 export const metadata: Metadata = {
   title: {
@@ -219,7 +220,7 @@ export default function WorkflowArtPage() {
               Bring structure to your practice and focus on what matters.
             </h2>
             <div className="lg:col-start-10 lg:col-span-3">
-              <AccessLink />
+              <WorkflowAccessRequestForm />
             </div>
           </div>
         </div>
