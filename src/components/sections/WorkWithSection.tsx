@@ -73,20 +73,24 @@ export function WorkWithSection() {
             <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-8 md:grid-cols-3 md:gap-14 lg:gap-20">
               <div>
                 <NetworkList label="ARTISTS" items={ARTISTS_COLUMN_ONE} />
-                <Link
-                  href="/practice"
-                  className="link-editorial mt-16 hidden w-fit whitespace-nowrap font-display text-[clamp(1.45rem,2.4vw,2.35rem)] font-medium leading-tight text-void md:inline-flex"
-                >
-                  Building your international practice →
-                </Link>
               </div>
               <NetworkList label="" items={ARTISTS_COLUMN_TWO} />
               <div className="col-span-2 mt-2 md:col-span-1 md:mt-0">
                 <NetworkList label="GALLERIES & INSTITUTIONS" items={INSTITUTIONS} />
               </div>
+              <div className="col-span-2 mt-4 min-[769px]:hidden">
+                <Link
+                  href="/practice"
+                  className="link-editorial w-fit font-display text-[1.5rem] font-medium leading-tight text-void"
+                >
+                  Building your international practice →
+                </Link>
+              </div>
+            </div>
+            <div className="mt-16 hidden min-[769px]:block">
               <Link
                 href="/practice"
-                className="link-editorial col-span-2 mt-4 inline-flex w-fit font-display text-[1.5rem] font-medium leading-tight text-void md:hidden"
+                className="link-editorial w-fit whitespace-nowrap font-display text-[clamp(1.45rem,2.4vw,2.35rem)] font-medium leading-tight text-void"
               >
                 Building your international practice →
               </Link>

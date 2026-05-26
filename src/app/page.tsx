@@ -4,7 +4,6 @@ import { ManifestoSection } from "@/components/sections/ManifestoSection";
 import { SelectedProjects } from "@/components/sections/SelectedProjects";
 import { WorkWithSection } from "@/components/sections/WorkWithSection";
 import { WorkflowSection } from "@/components/sections/WorkflowSection";
-import { TeamSection } from "@/components/sections/TeamSection";
 import { NewsletterCTA } from "@/components/sections/NewsletterCTA";
 import { PracticeCTA } from "@/components/sections/PracticeCTA";
 import type { Metadata } from "next";
@@ -25,7 +24,6 @@ export default function HomePage() {
         <ManifestoSection />
         <WorkWithSection />
         <WorkflowSection />
-        <TeamSection />
         <NewsletterCTA />
         <PracticeCTA />
       </div>
