@@ -121,10 +121,6 @@ function ExhibitionCard({ project }: { project: Project }) {
           {displayProject.venue}
         </p>
 
-        <p className="mt-5 text-[0.92rem] leading-[1.72] text-void/64 sm:mt-7">
-          {displayProject.description}
-        </p>
-
       </div>
     </article>
   );
