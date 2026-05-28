@@ -18,8 +18,8 @@ export function Footer() {
           <div className="lg:col-span-4">
             <p className="font-display text-[1rem] font-semibold leading-none">ART CURATORIAL NOMADS</p>
             <p className="mt-4 max-w-[34ch] text-sm leading-[1.75] text-white/58">
-              International curatorial platform for contemporary art, digital culture,
-              and exhibition production.
+              Curatorial collective working across contemporary art, digital culture,
+              and international exhibitions.
             </p>
           </div>
 
