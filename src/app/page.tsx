@@ -9,7 +9,7 @@ import { PracticeCTA } from "@/components/sections/PracticeCTA";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Art Curatorial Nomads - International Curatorial Platform",
+  title: "Art Curatorial Nomads - International Curatorial Collective",
   description:
     "International curatorial platform operating across contemporary art, immersive technologies, digital culture, and interdisciplinary exhibition-making.",
 };
