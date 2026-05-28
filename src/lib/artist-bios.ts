@@ -136,4 +136,22 @@ export const EXHIBITION_ARTIST_BIOS: Record<string, ArtistBio[]> = {
       ],
     },
   ],
+
+  "materialization-sensual": [
+    {
+      name: "Ellen Sheidlin",
+      paragraphs: [
+        "Sheidlin's work reflects on the role of art in society and the ways in which it can shape our perception of the world. The mixture of the digital and the physical, the dream-like and the real, the material and the intangible, in the long term produces an ever-wondering projection of versatile personality for the viewer themselves: each of us can hold many different facets, sensations and worlds within ourselves. In the parallel universe of Sheidlin, there is nothing stopping us to change skin, personality, character or even species.",
+      ],
+    },
+  ],
+
+  "70-desert-stones": [
+    {
+      name: "Ellen Sheidlin",
+      paragraphs: [
+        "Sheidlin's work reflects on the role of art in society and the ways in which it can shape our perception of the world. The mixture of the digital and the physical, the dream-like and the real, the material and the intangible, in the long term produces an ever-wondering projection of versatile personality for the viewer themselves: each of us can hold many different facets, sensations and worlds within ourselves. In the parallel universe of Sheidlin, there is nothing stopping us to change skin, personality, character or even species.",
+      ],
+    },
+  ],
 };

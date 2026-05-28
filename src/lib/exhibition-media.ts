@@ -23,6 +23,8 @@ export interface ExhibitionMedia {
   hideRightArtists: boolean;
   /** Hide the Collaborators block in the right description column */
   hideRightCollaborators: boolean;
+  /** Override the LOCATION field in the left sidebar (replaces venue + city display) */
+  overrideLocation?: string;
 }
 
 const imageExtension = /\.(jpe?g|png|webp|gif)$/i;
@@ -110,6 +112,7 @@ export function getExhibitionMedia(config: ExhibitionPageConfig, project: Projec
       artistBios,
       hideRightArtists: config.hideRightArtists ?? false,
       hideRightCollaborators: config.hideRightCollaborators ?? false,
+      overrideLocation: config.overrideLocation,
     };
   }
 
@@ -135,5 +138,6 @@ export function getExhibitionMedia(config: ExhibitionPageConfig, project: Projec
     artistBios,
     hideRightArtists: config.hideRightArtists ?? false,
     hideRightCollaborators: config.hideRightCollaborators ?? false,
+    overrideLocation: config.overrideLocation,
   };
 }

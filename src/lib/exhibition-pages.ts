@@ -12,6 +12,8 @@ export interface ExhibitionPageConfig {
   featuredWorksStart?: number;
   /** Cap total featured works shown */
   featuredWorksLimit?: number;
+  /** Override the LOCATION field in the left sidebar (replaces venue + city) */
+  overrideLocation?: string;
 }
 
 export const EXHIBITION_PAGE_CONFIGS: ExhibitionPageConfig[] = [
@@ -48,6 +50,7 @@ export const EXHIBITION_PAGE_CONFIGS: ExhibitionPageConfig[] = [
     folder: "New Locality",
     hideRightArtists: true,
     featuredWorksLimit: 8,
+    overrideLocation: "The Gallery",
   },
   {
     projectId: "expanding-light",
@@ -100,11 +103,14 @@ export const EXHIBITION_PAGE_CONFIGS: ExhibitionPageConfig[] = [
     slug: "annihilation",
     folder: "Annihilation",
     featuredColumns: 3,
+    hideRightArtists: true,
   },
   {
     projectId: "materialization-sensual",
     slug: "materialization-of-sensual-ideas",
     folder: "Materialization of Sensual Ideas",
+    hideRightArtists: true,
+    hideRightCollaborators: true,
   },
   {
     projectId: "cicconi-resin",

@@ -195,8 +195,14 @@ export function ExhibitionDetailTemplate({
               <div>
                 <p className="text-label mb-3 text-void/35">LOCATION</p>
                 <p className="text-sm leading-[1.7] text-void/66">
-                  {project.venue ? <>{project.venue}<br /></> : null}
-                  {project.city}
+                  {media.overrideLocation ? (
+                    media.overrideLocation
+                  ) : (
+                    <>
+                      {project.venue ? <>{project.venue}<br /></> : null}
+                      {project.city}
+                    </>
+                  )}
                 </p>
               </div>
               {project.collaborators && project.collaborators.length > 0 && (

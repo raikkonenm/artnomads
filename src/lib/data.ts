@@ -307,7 +307,7 @@ export const PROJECTS: Project[] = [
     city: "Dubai",
     year: "2022",
     description:
-      "A 360-degree immersive digital environment based on Ellen Sheidlin's 'survirtualism' methodology, exploring subconscious imagery, fantastical creatures, sensuality, and dream logic.",
+      "Materialization of sensual ideas is an animated digital canvas which occupies the entire space of the 360 degree panoramic screen at Art in space.\n\nThe audience will be treated to an unforgettable immersive art experience with fantastical creatures and objects inhabiting the inner world of Ellen. According to the artist's personal «survivalism» technique, the most important things are hidden in the subconscious of the persons, in this chaotic constellation of their fantasies.",
     artists: ["Ellen Sheidlin"],
     imageUrl: "/projects/materialization-sensual-ideas.jpg",
     imageAlt: "360-degree immersive digital environment",
