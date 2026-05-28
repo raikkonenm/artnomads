@@ -101,7 +101,7 @@ export function PracticePageContent() {
       <section className="border-t border-black/10">
         <div className="container-gallery py-[var(--spacing-section)]">
           <Link
-            href="/contact"
+            href="/#contact"
             className="link-editorial font-display text-[clamp(1.8rem,3.2vw,3.25rem)] font-medium leading-[1.08] text-void"
           >
             Not sure where to start? Write to us {"\u2192"}

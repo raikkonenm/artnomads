@@ -134,7 +134,7 @@ function CurrentlySection({ project }: { project: Project }) {
   return (
     <section className="border-t border-black/10 pb-10 pt-[var(--spacing-section)] sm:py-[var(--spacing-section)]">
       <div className="container-gallery">
-        <h2 className="text-label text-void/45">CURRENTLY</h2>
+        <h2 className="text-label text-void/45">LATEST</h2>
 
         <div className="mt-8 grid gap-8 sm:mt-10 sm:gap-10 lg:grid-cols-[minmax(0,1.18fr)_minmax(20rem,0.72fr)] lg:gap-14 xl:gap-18">
           <Link href={projectHref(project)} className="group block">
@@ -171,9 +171,6 @@ function CurrentlySection({ project }: { project: Project }) {
                 <p className="text-label mb-2 text-void/35">Dates</p>
                 <p className="text-sm leading-relaxed text-void/62">14–17 May 2026</p>
               </div>
-              <Link href={projectHref(project)} className="link-editorial mt-3 inline-flex w-fit text-label text-void sm:mt-4">
-                VISIT EXHIBITION ↗
-              </Link>
             </div>
           </div>
         </div>

@@ -57,6 +57,10 @@ export default function ArtDubai2026Page() {
           <div className="grid gap-14 lg:grid-cols-12">
             <div className="grid content-start gap-10 border-t border-black/10 pt-5 lg:col-span-4">
               <div>
+                <p className="text-label mb-3 text-void/35">ARTISTS</p>
+                <p className="text-sm leading-[1.7] text-void/66">Fatma Lootah / Chunkook Lee</p>
+              </div>
+              <div>
                 <p className="text-label mb-3 text-void/35">DATES</p>
                 <p className="text-sm leading-[1.7] text-void/66">14–17 May 2026</p>
               </div>

@@ -85,7 +85,8 @@ export const PROJECTS: Project[] = [
     city: "New York",
     year: "2023",
     description:
-      "Immersive digital works across art, spirituality, and public space.",
+      "In collaboration with TON Diamonds Marketplace.\n\nThe curatorial concept of the exhibition — «Stream of Consciousness: Exploring the Intersection of Art, Technology, and Spirituality» — brings together five innovative artists, each interpreting this intersection in their own unique way. Together, they create a rich tapestry of ideas that delve into the essence of human consciousness.\n\nTheir works offer a glimpse into the nature of existence, showcasing the power of art to express complex emotions and ideas that transcend language and culture. Stream of Consciousness is a unique and thought-provoking exhibition that promises to be both visually captivating and intellectually rich.\n\nAs part of the project's extended outreach, the participating artists were also featured on a 3D billboard in Times Square — one of the busiest pedestrian areas in the world. The advertisement was displayed above the Edition Hotel on a massive 14,000-square-foot screen and reached an average of 158,000 viewers per day.",
+    artists: ["Trung Bao", "Ellen Sheidlin", "Sarah McDaniel", "Shane Fu", "Harry Yeff"],
     imageUrl: "/projects/stream-of-consciousness-times-square.jpg",
     imageAlt: "Times Square at night with digital billboard displays",
     featured: true,
@@ -116,7 +117,7 @@ export const PROJECTS: Project[] = [
     city: "Tokyo",
     year: "2025",
     description:
-      "A multisensory five-senses experience exploring the intersection of contemporary art, fashion, tactility, and objecthood. A seven-day program bringing together artists and brands from Japan and Los Angeles.",
+      "An exhibition project exploring the intersection of contemporary art, fashion, and objecthood through a multilayered, five-senses experience. For the first time in Omotesandō at Linda Gallery, artists and brands from Japan and Los Angeles come together, creating an immersive environment where visual form, tactility, and gesture converge into a unified field of perception.",
     artists: ["Taketo Kikuchi", "Eimi Suzuki"],
     collaborators: ["ESQAPE", "Linda Gallery"],
     imageUrl: "/projects/tokyo-collaborative-esqape-linda-gallery.png",
@@ -150,8 +151,8 @@ export const PROJECTS: Project[] = [
     city: "Seoul",
     year: "2025",
     description:
-      "Fictional archaeology, residue, and objects that exist beyond time.",
-    artists: ["Juri Wi", "Yasy Bachurina", "Chunkook Lee", "Ángela Leyva", "Yutaro Inagaki", "Irina Razumovskaya"],
+      "Handful of Dust is a reflection on what remains when meaning fades. The exhibition explores untranslatable fragments, obsolete gestures, and materials that continue to exist even after their function has been lost. It is not about nostalgia or archaeology, but about residues — things that have fallen out of time yet still quietly persist.\n\nThe works may appear as «mistakes» — rough, uncertain, unresolved. Yet in their detachment, they become autonomous, gaining their own life. Handful of Dust is not about loss, but about residue — not about reconstruction, but about staying close to what lies beyond time, and still speaks, even if we can no longer decipher it.",
+    artists: ["Juri Wi", "Yasy Bachurina", "Chunkook Lee", "Ángela Leyva", "Yutaro Inagaki", "Irina Razumovskaya", "Nicky Sparre-Ulrich", "Goujirou"],
     imageUrl: "/projects/handful-of-dust-feature.jpg",
     imageAlt: "Minimal gallery with sculptural objects",
     featured: true,
@@ -165,7 +166,9 @@ export const PROJECTS: Project[] = [
     city: "Tbilisi",
     year: "2025",
     description:
-      "An exhibition focused on migration, emotional transformation, cultural hybridity, and the changing meaning of human connection in an era of constant movement and digital communication.",
+      "What does it mean to belong? “New Locality” explores movement, transformation, and the fragile balance between separation and connection. In a world where the illusion of global unity fades, these works reflect on resilience, displacement, and the power of local communities.\n\nBringing together diverse artistic voices, the exhibition examines how personal and collective histories shape our sense of place. Through painting, installation, and mixed media, artists navigate shifting landscapes—both physical and emotional—creating new dialogues across distances.",
+    artists: ["Zoe Spehr", "Yasy Bachurina", "Mako Lomadze", "Nickie Zimov", "Anton Revva", "Polina Orlova", "Nino Gogolidze", "Red Svett", "Mariam Akhobadze"],
+    collaborators: ["The Gallery"],
     imageUrl: "/projects/new-locality.jpg",
     imageAlt: "Contemporary art space with abstract installations",
     featured: false,
@@ -179,7 +182,7 @@ export const PROJECTS: Project[] = [
     city: "London",
     year: "2025",
     description:
-      "A site-specific immersive light installation exploring invisible spatial structures, perception, architecture, and the convergence of analogue and digital environments.",
+      "The exhibition features a site-specific light installation, conceived in direct response to the unique architectural and atmospheric qualities of the space. Ellen's work is inherently immersive, using light not only as a medium but as a material to engage with the interplay of visible and invisible forces—light, shadow, and their delicate transition between.\n\nThis installation continues her exploration of the hidden structures beneath the surface, using ethereal light to draw attention to the subtleties of spatial experience. Reflecting her multidisciplinary approach, the work resonates with its surroundings through careful consideration of placement, time, and environment. This work will exist in the convergence of analogue and digital realms.",
     artists: ["Ellen Barratt"],
     imageUrl: "/projects/expanding-light-2.jpg",
     imageAlt: "Light installation in gallery space",
@@ -190,11 +193,11 @@ export const PROJECTS: Project[] = [
     id: "source-code",
     index: "11",
     title: "SOURCE CODE",
-    venue: "Offline Exhibition",
-    city: "ST. PETERSBURG",
+    venue: "",
+    city: "International",
     year: "2024",
     description:
-      "Offline exhibition exploring the intersection of Tarot symbolism, generative art, AI culture, and neural-network aesthetics. The project brought together students, teachers, and co-founders of AI Uni in a collaborative exhibition format focused on archetypes, computation, and visual transformation.",
+      "An exhibition exploring the intersection of Tarot symbolism, generative art, AI culture, and neural-network aesthetics. The project brought together students, teachers, and co-founders of AI Uni in a collaborative exhibition format focused on archetypes, computation, and visual transformation.",
     artists: ["AI Uni Artists"],
     curators: ["Ellen Sheidlin", "Eugene Sheidlin", "Ksenia Kiseleva", "Ariadna Krylova"],
     imageUrl: "/projects/source-code.jpg",
@@ -226,7 +229,7 @@ export const PROJECTS: Project[] = [
     city: "London",
     year: "2024",
     description:
-      "A presentation of computationally driven contemporary artworks combining historical miniature traditions, coding, digital displays, Islamic mathematical heritage, and algorithmic visual systems.",
+      "Art by Orkhan Mammadov explores the convergence of creative expression and computational technology, examining how digital tools and perspectives reshape cultural interactions. Demonstrating a flair for coding and design since the age of ten, Mammadov brings a technical precision to his art that complements his conceptual vision.\n\nAt Focus Art Fair, Mammadov presents the series «Muraqqa - Data Miniatures». This work reinterprets historical miniatures, animating them through digital displays, silicon, and code. These miniatures celebrate diverse civilizations, finding renewed significance in our interconnected world.\n\nThe «Holymath» series draws from the mathematical heritage of the Islamic Golden Age. Inspired by scholars like Al-Khwarizmi and Omar Khayyam, it highlights their contributions to algebra and geometry. By connecting historical brilliance with modern digital forms, the series bridges past and present through visual exploration.",
     artists: ["Orkhan Mammadov"],
     imageUrl: "/projects/orkhan-mammadov-focus-art-fair.jpg",
     imageAlt: "Algorithmic digital artwork with geometric patterns",

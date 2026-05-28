@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArtDubaiInstallationCarousel } from "@/components/sections/ArtDubaiInstallationCarousel";
 import { LightboxArtwork } from "@/components/ui/ImageLightbox";
 import type { Project } from "@/lib/data";
+import type { ArtistBio } from "@/lib/artist-bios";
 import type { ExhibitionMedia, ExhibitionMediaItem } from "@/lib/exhibition-media";
 
 function FeaturedWorks({
@@ -32,12 +33,22 @@ function FeaturedWorks({
   );
 }
 
-function ArtistBlocks({ project, images }: { project: Project; images: ExhibitionMediaItem[] }) {
+/** Image-based artist blocks — image on one side, name + bio on the other. */
+function ArtistImageBlocks({
+  project,
+  images,
+  artistBios,
+}: {
+  project: Project;
+  images: ExhibitionMediaItem[];
+  artistBios: ArtistBio[];
+}) {
   return (
     <div className="grid gap-24 lg:gap-32">
       {images.map((image, index) => {
         const reverse = index % 2 === 1;
         const artistName = project.artists?.[index] ?? project.artists?.[0] ?? "Artist";
+        const bio = artistBios.find((b) => b.name === artistName);
 
         return (
           <article
@@ -63,13 +74,50 @@ function ArtistBlocks({ project, images }: { project: Project; images: Exhibitio
               <h2 className="font-display text-[clamp(2.4rem,4.6vw,5.6rem)] font-medium leading-[0.96] tracking-[-0.035em] text-void">
                 {artistName}
               </h2>
-              <p className="mt-9 text-[clamp(1rem,1.16vw,1.12rem)] leading-[1.84] text-void/64">
-                Artist information forthcoming.
-              </p>
+              <div className="mt-9 grid gap-5">
+                {bio ? (
+                  bio.paragraphs.map((para, i) => (
+                    <p key={i} className="text-[clamp(1rem,1.16vw,1.12rem)] leading-[1.84] text-void/64">
+                      {para}
+                    </p>
+                  ))
+                ) : (
+                  <p className="text-[clamp(1rem,1.16vw,1.12rem)] leading-[1.84] text-void/64">
+                    Artist information forthcoming.
+                  </p>
+                )}
+              </div>
             </div>
           </article>
         );
       })}
+    </div>
+  );
+}
+
+/** Text-only artist blocks — name left, bio right. Used when no artist images exist. */
+function ArtistTextBlocks({ artistBios }: { artistBios: ArtistBio[] }) {
+  return (
+    <div className="grid gap-20 lg:gap-28">
+      {artistBios.map((bio) => (
+        <article
+          key={bio.name}
+          className="grid gap-8 border-t border-black/10 pt-10 lg:grid-cols-12 lg:gap-16"
+        >
+          <div className="lg:col-span-4">
+            <h2 className="font-display text-[clamp(2rem,3.5vw,4.2rem)] font-medium leading-[0.96] tracking-[-0.03em] text-void">
+              {bio.name}
+            </h2>
+          </div>
+          <div className="grid gap-5 lg:col-start-6 lg:col-span-7">
+            {bio.paragraphs.map((para, i) => (
+              <p key={i} className="text-[clamp(1rem,1.16vw,1.12rem)] leading-[1.84] text-void/64">
+                {para}
+              </p>
+            ))}
+          </div>
+        </article>
+      ))}
     </div>
   );
 }
@@ -83,9 +131,15 @@ export function ExhibitionDetailTemplate({
 }) {
   const details = project.description || "Details forthcoming.";
   const artists = project.artists?.join(" / ") ?? "Details forthcoming.";
+  const collaborators = project.collaborators?.join(" / ") ?? "Details forthcoming.";
+
+  const hasArtistImages = media.artistImages.length > 0;
+  const hasArtistBios = media.artistBios.length > 0;
+  const showArtistSection = hasArtistImages || (!hasArtistImages && hasArtistBios);
 
   return (
     <div className="section-paper">
+      {/* ── Hero ─────────────────────────────────────────────────────── */}
       <section className="relative flex h-[100svh] min-h-[680px] overflow-hidden bg-void text-white">
         <div className="absolute inset-0" aria-hidden>
           <Image
@@ -109,9 +163,11 @@ export function ExhibitionDetailTemplate({
             <h1 className="max-w-[44rem] font-display text-[clamp(3rem,5vw,5.75rem)] font-medium leading-[0.92] tracking-[-0.03em] text-white">
               {project.title}
             </h1>
-            <p className="mt-8 text-[clamp(1rem,1.2vw,1.22rem)] font-medium leading-[1.5] text-white/88">
-              {project.venue}
-            </p>
+            {project.venue && (
+              <p className="mt-8 text-[clamp(1rem,1.2vw,1.22rem)] font-medium leading-[1.5] text-white/88">
+                {project.venue}
+              </p>
+            )}
             <p className="mt-6 text-sm leading-[1.75] text-white/74">
               {project.dateRange ?? project.year}
             </p>
@@ -119,14 +175,19 @@ export function ExhibitionDetailTemplate({
         </div>
       </section>
 
+      {/* ── Info row ─────────────────────────────────────────────────── */}
       <section className="border-t border-black/10">
         <div className="container-gallery py-[var(--spacing-section)]">
           <div className="grid gap-14 lg:grid-cols-12">
+
+            {/* Left sidebar */}
             <div className="grid content-start gap-10 border-t border-black/10 pt-5 lg:col-span-4">
-              <div>
-                <p className="text-label mb-3 text-void/35">ARTISTS</p>
-                <p className="text-sm leading-[1.7] text-void/66">{artists}</p>
-              </div>
+              {project.artists && project.artists.length > 0 && (
+                <div>
+                  <p className="text-label mb-3 text-void/35">ARTISTS</p>
+                  <p className="text-sm leading-[1.7] text-void/66">{artists}</p>
+                </div>
+              )}
               <div>
                 <p className="text-label mb-3 text-void/35">DATES</p>
                 <p className="text-sm leading-[1.7] text-void/66">{project.dateRange ?? project.year}</p>
@@ -134,34 +195,52 @@ export function ExhibitionDetailTemplate({
               <div>
                 <p className="text-label mb-3 text-void/35">LOCATION</p>
                 <p className="text-sm leading-[1.7] text-void/66">
-                  {project.venue}
-                  <br />
+                  {project.venue ? <>{project.venue}<br /></> : null}
                   {project.city}
                 </p>
               </div>
+              {project.collaborators && project.collaborators.length > 0 && (
+                <div>
+                  <p className="text-label mb-3 text-void/35">COLLABORATORS</p>
+                  <p className="text-sm leading-[1.7] text-void/66">{collaborators}</p>
+                </div>
+              )}
             </div>
 
+            {/* Right description column */}
             <div className="border-t border-black/10 pt-5 lg:col-start-7 lg:col-span-6">
-              <p className="text-[clamp(1rem,1.2vw,1.16rem)] leading-[1.86] text-void/68">{details}</p>
-              <div className="mt-10 grid gap-7">
-                <div>
-                  <p className="text-label mb-2 text-void/35">Artists</p>
-                  <p className="text-sm leading-relaxed text-void/58">
-                    {artists}
-                  </p>
+              {details.split("\n\n").map((para, i) => (
+                <p
+                  key={i}
+                  className={`text-[clamp(1rem,1.2vw,1.16rem)] leading-[1.86] text-void/68 ${i > 0 ? "mt-7" : ""}`}
+                >
+                  {para}
+                </p>
+              ))}
+
+              {/* Right-column meta (artists / collaborators) — hidden when config flag set */}
+              {(!media.hideRightArtists || !media.hideRightCollaborators) && (
+                <div className="mt-10 grid gap-7">
+                  {!media.hideRightArtists && (
+                    <div>
+                      <p className="text-label mb-2 text-void/35">Artists</p>
+                      <p className="text-sm leading-relaxed text-void/58">{artists}</p>
+                    </div>
+                  )}
+                  {!media.hideRightCollaborators && (
+                    <div>
+                      <p className="text-label mb-2 text-void/35">Collaborators</p>
+                      <p className="text-sm leading-relaxed text-void/58">{collaborators}</p>
+                    </div>
+                  )}
                 </div>
-                <div>
-                  <p className="text-label mb-2 text-void/35">Collaborators</p>
-                  <p className="text-sm leading-relaxed text-void/58">
-                    {project.collaborators?.join(" / ") ?? "Details forthcoming."}
-                  </p>
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
       </section>
 
+      {/* ── Installation views ───────────────────────────────────────── */}
       {media.installationImages.length > 0 && (
         <section className="border-t border-black/10">
           <div className="py-[var(--spacing-section)]">
@@ -170,6 +249,7 @@ export function ExhibitionDetailTemplate({
         </section>
       )}
 
+      {/* ── Featured works ───────────────────────────────────────────── */}
       {media.featuredWorks.length > 0 && (
         <section className="border-t border-black/10">
           <div className="container-gallery py-[var(--spacing-section)]">
@@ -179,11 +259,20 @@ export function ExhibitionDetailTemplate({
         </section>
       )}
 
-      {media.artistImages.length > 0 && (
+      {/* ── Artist section ───────────────────────────────────────────── */}
+      {showArtistSection && (
         <section className="border-t border-black/10">
           <div className="container-gallery py-[var(--spacing-section)]">
             <p className="text-label mb-12 text-void/45">About the Artists</p>
-            <ArtistBlocks project={project} images={media.artistImages} />
+            {hasArtistImages ? (
+              <ArtistImageBlocks
+                project={project}
+                images={media.artistImages}
+                artistBios={media.artistBios}
+              />
+            ) : (
+              <ArtistTextBlocks artistBios={media.artistBios} />
+            )}
           </div>
         </section>
       )}

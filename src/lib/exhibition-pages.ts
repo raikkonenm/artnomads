@@ -4,29 +4,89 @@ export interface ExhibitionPageConfig {
   folder?: string;
   installationLabel?: string;
   featuredColumns?: 2 | 3;
+  /** Hide the Artists block in the right description column */
+  hideRightArtists?: boolean;
+  /** Hide the Collaborators block in the right description column */
+  hideRightCollaborators?: boolean;
+  /** Skip the first N featured works (e.g. to remove a duplicate) */
+  featuredWorksStart?: number;
+  /** Cap total featured works shown */
+  featuredWorksLimit?: number;
 }
 
 export const EXHIBITION_PAGE_CONFIGS: ExhibitionPageConfig[] = [
-  { projectId: "handful-of-dust", slug: "handful-of-dust", folder: "Handful of Dust" },
-  { projectId: "stream-of-consciousness", slug: "stream-of-consciousness", folder: "Stream of Consciousness" },
+  {
+    projectId: "handful-of-dust",
+    slug: "handful-of-dust",
+    folder: "Handful of Dust",
+    hideRightArtists: true,
+    hideRightCollaborators: true,
+  },
+  {
+    projectId: "stream-of-consciousness",
+    slug: "stream-of-consciousness",
+    folder: "Stream of Consciousness",
+    hideRightArtists: true,
+    hideRightCollaborators: true,
+  },
   { projectId: "women-nfts", slug: "women-nfts", folder: "Women & NFTs" },
   {
     projectId: "tokyo-collaborative",
     slug: "tokyo-collaborative",
     folder: "Tokyo Collaborative — ESQAPE & Linda Gallery",
+    hideRightArtists: true,
+    hideRightCollaborators: true,
   },
-  { projectId: "hybrid-chronicles", slug: "hybrid-chronicles" },
-  { projectId: "new-locality", slug: "new-locality", folder: "New Locality" },
-  { projectId: "expanding-light", slug: "expanding-light", folder: "Expanding Light" },
-  { projectId: "source-code", slug: "source-code" },
-  { projectId: "tree-of-life", slug: "tree-of-life", folder: "Tree_of_life" },
+  {
+    projectId: "hybrid-chronicles",
+    slug: "hybrid-chronicles",
+    folder: "Hybrid Chronicles",
+  },
+  {
+    projectId: "new-locality",
+    slug: "new-locality",
+    folder: "New Locality",
+    hideRightArtists: true,
+    featuredWorksLimit: 8,
+  },
+  {
+    projectId: "expanding-light",
+    slug: "expanding-light",
+    folder: "Expanding Light",
+    hideRightArtists: true,
+    hideRightCollaborators: true,
+  },
+  {
+    projectId: "source-code",
+    slug: "source-code",
+    hideRightArtists: true,
+    hideRightCollaborators: true,
+  },
+  {
+    projectId: "tree-of-life",
+    slug: "tree-of-life",
+    folder: "Tree_of_life",
+    hideRightArtists: true,
+  },
   {
     projectId: "orkhan-mammadov",
     slug: "orkhan-mammadov-at-focus-art-fair",
     folder: "Orkhan Mammadov at Focus Art Fair",
+    hideRightArtists: true,
+    hideRightCollaborators: true,
   },
-  { projectId: "tenu-bangkok", slug: "tenu", folder: "TENÚ" },
-  { projectId: "noise-australia", slug: "noise", folder: "NOISE" },
+  {
+    projectId: "tenu-bangkok",
+    slug: "tenu",
+    folder: "TENÚ",
+    hideRightArtists: true,
+    featuredWorksStart: 1,
+  },
+  {
+    projectId: "noise-australia",
+    slug: "noise",
+    folder: "NOISE",
+  },
   { projectId: "white-dragon", slug: "white-dragon", folder: "White Dragon" },
   {
     projectId: "inner-landscapes",

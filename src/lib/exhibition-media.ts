@@ -2,6 +2,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import type { Project } from "@/lib/data";
 import type { ExhibitionPageConfig } from "@/lib/exhibition-pages";
+import { EXHIBITION_ARTIST_BIOS, type ArtistBio } from "@/lib/artist-bios";
 
 export interface ExhibitionMediaItem {
   src: string;
@@ -16,6 +17,12 @@ export interface ExhibitionMedia {
   featuredWorks: ExhibitionMediaItem[];
   artistImages: ExhibitionMediaItem[];
   featuredColumns?: 2 | 3;
+  /** Text-only artist bio blocks (image-based blocks use these for bio text too) */
+  artistBios: ArtistBio[];
+  /** Hide the Artists block in the right description column */
+  hideRightArtists: boolean;
+  /** Hide the Collaborators block in the right description column */
+  hideRightCollaborators: boolean;
 }
 
 const imageExtension = /\.(jpe?g|png|webp|gif)$/i;
@@ -90,6 +97,8 @@ function readSectionImages(folder: string, sectionNames: string[], label: string
 }
 
 export function getExhibitionMedia(config: ExhibitionPageConfig, project: Project): ExhibitionMedia {
+  const artistBios = EXHIBITION_ARTIST_BIOS[config.projectId] ?? [];
+
   if (!config.folder) {
     return {
       heroImage: project.imageUrl,
@@ -98,6 +107,9 @@ export function getExhibitionMedia(config: ExhibitionPageConfig, project: Projec
       featuredWorks: [],
       artistImages: [],
       featuredColumns: config.featuredColumns,
+      artistBios,
+      hideRightArtists: config.hideRightArtists ?? false,
+      hideRightCollaborators: config.hideRightCollaborators ?? false,
     };
   }
 
@@ -105,12 +117,23 @@ export function getExhibitionMedia(config: ExhibitionPageConfig, project: Projec
   const installationSection =
     config.installationLabel === "VIDEO VIEW" ? ["video view"] : ["installation views"];
 
+  let featuredWorks = readSectionImages(config.folder, ["featured works"], `${project.title} featured work`);
+  if (config.featuredWorksStart) {
+    featuredWorks = featuredWorks.slice(config.featuredWorksStart);
+  }
+  if (config.featuredWorksLimit !== undefined) {
+    featuredWorks = featuredWorks.slice(0, config.featuredWorksLimit);
+  }
+
   return {
     heroImage: heroImages[0]?.src ?? project.imageUrl,
     installationLabel: config.installationLabel ?? "INSTALLATION VIEWS",
     installationImages: readSectionImages(config.folder, installationSection, `${project.title} installation view`),
-    featuredWorks: readSectionImages(config.folder, ["featured works"], `${project.title} featured work`),
+    featuredWorks,
     artistImages: readSectionImages(config.folder, ["artist", "artists"], `${project.title} artist image`),
     featuredColumns: config.featuredColumns,
+    artistBios,
+    hideRightArtists: config.hideRightArtists ?? false,
+    hideRightCollaborators: config.hideRightCollaborators ?? false,
   };
 }

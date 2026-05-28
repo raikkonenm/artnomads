@@ -8,14 +8,14 @@ import { cn } from "@/lib/utils";
 
 const leftNav = [
   { label: "Exhibitions", href: "/exhibitions" },
-  { label: "Network", href: "#network" },
+  { label: "Network", href: "/#network" },
   { label: "Practice", href: "/practice" },
 ];
 
 const rightNav = [
   { label: "FINDART ↗", href: "https://www.findartplatform.com/", external: true },
   { label: "WORKFLOW.ART", href: "/workflow-art" },
-  { label: "Contact", href: "#contact" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 const mobilePrimaryNav = [
