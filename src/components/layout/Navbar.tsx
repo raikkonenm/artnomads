@@ -217,17 +217,16 @@ export function Navbar() {
                     <Link
                       href={item.href}
                       onClick={() => setMenuOpen(false)}
-                      className="grid grid-cols-[3rem_minmax(0,1fr)] items-center py-6"
+                      className="flex items-center py-[0.85rem]"
                     >
-                      <span className="text-label text-void/35">{item.number}</span>
-                      <span className="min-w-0 font-display text-[2.25rem] font-medium leading-none">
+                      <span className="min-w-0 font-display text-[1.75rem] font-medium leading-none">
                         {item.label}
                       </span>
                     </Link>
                   </motion.li>
                 ))}
               </ul>
-              <ul className="mt-8 border-t border-black/10 pt-2">
+              <ul className="mt-5 border-t border-black/10 pt-1">
                 {mobileProductNav.map((item, index) => (
                   <motion.li
                     key={item.label}
@@ -242,10 +241,9 @@ export function Navbar() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => setMenuOpen(false)}
-                        className="grid grid-cols-[3rem_minmax(0,1fr)] items-center py-5"
+                        className="flex items-center py-[0.85rem]"
                       >
-                        <span className="text-label text-void/35">{item.number}</span>
-                        <span className="min-w-0 font-display text-[1.625rem] font-medium leading-none text-void/70">
+                        <span className="min-w-0 font-display text-[1.375rem] font-medium leading-none text-void/70">
                           {item.label}
                         </span>
                       </a>
@@ -253,10 +251,9 @@ export function Navbar() {
                       <Link
                         href={item.href}
                         onClick={() => setMenuOpen(false)}
-                        className="grid grid-cols-[3rem_minmax(0,1fr)] items-center py-5"
+                        className="flex items-center py-[0.85rem]"
                       >
-                        <span className="text-label text-void/35">{item.number}</span>
-                        <span className="min-w-0 font-display text-[1.625rem] font-medium leading-none text-void/70">
+                        <span className="min-w-0 font-display text-[1.375rem] font-medium leading-none text-void/70">
                           {item.label}
                         </span>
                       </Link>
