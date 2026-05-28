@@ -1,11 +1,12 @@
 import Link from "next/link";
 
-const footerLinks = [
-  ["Projects", "#projects"],
-  ["About", "#about"],
-  ["Services", "#services"],
-  ["Team", "#team"],
-  ["Contact", "#contact"],
+const footerLinks: { label: string; href: string; external?: boolean }[] = [
+  { label: "Exhibitions", href: "/#exhibitions" },
+  { label: "Network", href: "/#network" },
+  { label: "Practice", href: "/practice" },
+  { label: "FindArt", href: "https://www.findartplatform.com/", external: true },
+  { label: "Workflow", href: "/workflow-art" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export function Footer() {
@@ -25,11 +26,22 @@ export function Footer() {
 
           <nav className="lg:col-start-6 lg:col-span-4">
             <ul className="flex flex-wrap gap-x-7 gap-y-3">
-              {footerLinks.map(([label, href]) => (
+              {footerLinks.map(({ label, href, external }) => (
                 <li key={href}>
-                  <Link href={href} className="text-label text-white/58 transition-colors duration-300 hover:text-white">
-                    {label}
-                  </Link>
+                  {external ? (
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-label text-white/58 transition-colors duration-300 hover:text-white"
+                    >
+                      {label}
+                    </a>
+                  ) : (
+                    <Link href={href} className="text-label text-white/58 transition-colors duration-300 hover:text-white">
+                      {label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
