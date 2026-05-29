@@ -129,7 +129,7 @@ export default function WorkflowArtPage() {
               <article key={module.index} className="border-t border-black/10 pt-5">
                 {module.index === "01" ? (
                   <PreviewImage
-                    src="/projects/opencall.png"
+                    src="/exhibitions/Workflow.art/48a5d743-7b8b-48fb-8dab-bbe9a4f2cc71.png"
                     alt="Workflow.art open calls tracker preview"
                   />
                 ) : module.index === "02" ? (
@@ -137,6 +137,11 @@ export default function WorkflowArtPage() {
                     src="/projects/whitecub.png"
                     alt="Workflow.art contacts and relationships preview"
                     fit="cover"
+                  />
+                ) : module.index === "03" ? (
+                  <PreviewImage
+                    src="/exhibitions/Workflow.art/f3d4dbe1-d965-4e0b-8ecd-020e3faa8ae6.png"
+                    alt="Workflow.art applications manager preview"
                   />
                 ) : (
                   <Placeholder label={module.placeholder} className="aspect-[16/10]" />
