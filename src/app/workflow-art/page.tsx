@@ -140,8 +140,13 @@ export default function WorkflowArtPage() {
                   />
                 ) : module.index === "03" ? (
                   <PreviewImage
-                    src="/exhibitions/Workflow.art/f3d4dbe1-d965-4e0b-8ecd-020e3faa8ae6.png"
+                    src="/exhibitions/Workflow.art/awards.png"
                     alt="Workflow.art applications manager preview"
+                  />
+                ) : module.index === "04" ? (
+                  <PreviewImage
+                    src="/images/edc788c7-3c03-42b6-a385-9fe7f0ae7940.png"
+                    alt="Workflow.art portfolio builder preview"
                   />
                 ) : (
                   <Placeholder label={module.placeholder} className="aspect-[16/10]" />
