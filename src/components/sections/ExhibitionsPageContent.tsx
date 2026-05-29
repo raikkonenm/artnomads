@@ -41,7 +41,7 @@ const PREVIOUS_PROJECT_IDS = [
   "comprehended-fantasy",
 ];
 
-const CARD_OVERRIDES: Record<string, Partial<Pick<Project, "venue" | "city" | "description">>> = {
+const CARD_OVERRIDES: Record<string, Partial<Pick<Project, "venue" | "city" | "description" | "imageUrl">>> = {
   "70-desert-stones": {
     venue: "Digital Project",
     city: "International",
@@ -53,6 +53,10 @@ const CARD_OVERRIDES: Record<string, Partial<Pick<Project, "venue" | "city" | "d
     city: "International",
     description:
       "Immersive exhibition exploring sensual perception, digital embodiment, and the translation of immaterial ideas into visual experience.",
+    imageUrl: "/exhibitions/Materialization%20of%20Sensual%20Ideas/ARTIST/20(1).jpg",
+  },
+  "source-code": {
+    imageUrl: "/exhibitions/sourcecode/bda6cbf8-5138-4eef-b5a3-b8b60c77ed45.png",
   },
   "cicconi-resin": {
     venue: "Residency",
@@ -97,7 +101,7 @@ function ExhibitionCard({ project }: { project: Project }) {
       <Link href={projectHref(project)} className="group block">
         <div className="relative aspect-[16/10] overflow-hidden bg-white">
           <Image
-            src={project.imageUrl}
+            src={displayProject.imageUrl}
             alt={project.imageAlt}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"

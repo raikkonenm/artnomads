@@ -100,10 +100,11 @@ function readSectionImages(folder: string, sectionNames: string[], label: string
 
 export function getExhibitionMedia(config: ExhibitionPageConfig, project: Project): ExhibitionMedia {
   const artistBios = EXHIBITION_ARTIST_BIOS[config.projectId] ?? [];
+  const heroOverride = config.heroImagePath ? mediaSrc(...config.heroImagePath) : undefined;
 
   if (!config.folder) {
     return {
-      heroImage: project.imageUrl,
+      heroImage: heroOverride ?? project.imageUrl,
       installationLabel: config.installationLabel ?? "INSTALLATION VIEWS",
       installationImages: [],
       featuredWorks: [],
@@ -129,7 +130,7 @@ export function getExhibitionMedia(config: ExhibitionPageConfig, project: Projec
   }
 
   return {
-    heroImage: heroImages[0]?.src ?? project.imageUrl,
+    heroImage: heroOverride ?? heroImages[0]?.src ?? project.imageUrl,
     installationLabel: config.installationLabel ?? "INSTALLATION VIEWS",
     installationImages: readSectionImages(config.folder, installationSection, `${project.title} installation view`),
     featuredWorks,

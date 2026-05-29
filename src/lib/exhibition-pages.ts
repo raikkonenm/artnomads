@@ -14,6 +14,8 @@ export interface ExhibitionPageConfig {
   featuredWorksLimit?: number;
   /** Override the LOCATION field in the left sidebar (replaces venue + city) */
   overrideLocation?: string;
+  /** Override the detail-page hero image with a specific file (path segments under /public, URL-encoded automatically). */
+  heroImagePath?: string[];
 }
 
 export const EXHIBITION_PAGE_CONFIGS: ExhibitionPageConfig[] = [
@@ -84,6 +86,7 @@ export const EXHIBITION_PAGE_CONFIGS: ExhibitionPageConfig[] = [
     folder: "TENÚ",
     hideRightArtists: true,
     featuredWorksStart: 1,
+    heroImagePath: ["exhibitions", "TENÚ", "FEATURED WORKS", "16(1).jpg"],
   },
   {
     projectId: "noise-australia",
