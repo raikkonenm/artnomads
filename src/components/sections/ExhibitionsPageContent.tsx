@@ -53,7 +53,7 @@ const CARD_OVERRIDES: Record<string, Partial<Pick<Project, "venue" | "city" | "d
     city: "International",
     description:
       "Immersive exhibition exploring sensual perception, digital embodiment, and the translation of immaterial ideas into visual experience.",
-    imageUrl: "/exhibitions/Materialization%20of%20Sensual%20Ideas/ARTIST/20(1).jpg",
+    imageUrl: "/exhibitions/Materialization%20of%20Sensual%20Ideas/20(1).jpg",
   },
   "source-code": {
     imageUrl: "/exhibitions/sourcecode/bda6cbf8-5138-4eef-b5a3-b8b60c77ed45.png",

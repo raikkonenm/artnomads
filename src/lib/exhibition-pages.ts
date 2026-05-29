@@ -85,7 +85,7 @@ export const EXHIBITION_PAGE_CONFIGS: ExhibitionPageConfig[] = [
     slug: "tenu",
     folder: "TENÚ",
     hideRightArtists: true,
-    featuredWorksStart: 1,
+    featuredWorksStart: 2,
     heroImagePath: ["exhibitions", "TENÚ", "FEATURED WORKS", "16(1).jpg"],
   },
   {
