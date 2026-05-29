@@ -7,6 +7,8 @@ export interface Project {
   year: string;
   dateRange?: string;
   description: string;
+  /** Short summary shown only in homepage previews; falls back to `description` when unset. */
+  previewDescription?: string;
   artists?: string[];
   curators?: string[];
   collaborators?: string[];
@@ -86,6 +88,8 @@ export const PROJECTS: Project[] = [
     year: "2023",
     description:
       "In collaboration with TON Diamonds Marketplace.\n\nThe curatorial concept of the exhibition — «Stream of Consciousness: Exploring the Intersection of Art, Technology, and Spirituality» — brings together five innovative artists, each interpreting this intersection in their own unique way. Together, they create a rich tapestry of ideas that delve into the essence of human consciousness.\n\nTheir works offer a glimpse into the nature of existence, showcasing the power of art to express complex emotions and ideas that transcend language and culture. Stream of Consciousness is a unique and thought-provoking exhibition that promises to be both visually captivating and intellectually rich.\n\nAs part of the project's extended outreach, the participating artists were also featured on a 3D billboard in Times Square — one of the busiest pedestrian areas in the world. The advertisement was displayed above the Edition Hotel on a massive 14,000-square-foot screen and reached an average of 158,000 viewers per day.",
+    previewDescription:
+      "The exhibition brings together five innovative artists, each interpreting this intersection in their own unique way. Together, they create a rich tapestry of ideas that delve into the essence of human consciousness.",
     artists: ["Trung Bao", "Ellen Sheidlin", "Sarah McDaniel", "Shane Fu", "Harry Yeff"],
     imageUrl: "/projects/stream-of-consciousness-times-square.jpg",
     imageAlt: "Times Square at night with digital billboard displays",
@@ -152,6 +156,8 @@ export const PROJECTS: Project[] = [
     year: "2025",
     description:
       "Handful of Dust is a reflection on what remains when meaning fades. The exhibition explores untranslatable fragments, obsolete gestures, and materials that continue to exist even after their function has been lost. It is not about nostalgia or archaeology, but about residues — things that have fallen out of time yet still quietly persist.\n\nThe works may appear as «mistakes» — rough, uncertain, unresolved. Yet in their detachment, they become autonomous, gaining their own life. Handful of Dust is not about loss, but about residue — not about reconstruction, but about staying close to what lies beyond time, and still speaks, even if we can no longer decipher it.",
+    previewDescription:
+      "The exhibition explores untranslatable fragments, obsolete gestures, and materials that continue to exist even after their function has been lost. It is not about nostalgia or archaeology, but about residues — things that have fallen out of time yet still quietly persist.",
     artists: ["Juri Wi", "Yasy Bachurina", "Chunkook Lee", "Ángela Leyva", "Yutaro Inagaki", "Irina Razumovskaya", "Nicky Sparre-Ulrich", "Goujirou"],
     imageUrl: "/projects/handful-of-dust-feature.jpg",
     imageAlt: "Minimal gallery with sculptural objects",
@@ -230,6 +236,8 @@ export const PROJECTS: Project[] = [
     year: "2024",
     description:
       "Art by Orkhan Mammadov explores the convergence of creative expression and computational technology, examining how digital tools and perspectives reshape cultural interactions. Demonstrating a flair for coding and design since the age of ten, Mammadov brings a technical precision to his art that complements his conceptual vision.\n\nAt Focus Art Fair, Mammadov presents the series «Muraqqa - Data Miniatures». This work reinterprets historical miniatures, animating them through digital displays, silicon, and code. These miniatures celebrate diverse civilizations, finding renewed significance in our interconnected world.\n\nThe «Holymath» series draws from the mathematical heritage of the Islamic Golden Age. Inspired by scholars like Al-Khwarizmi and Omar Khayyam, it highlights their contributions to algebra and geometry. By connecting historical brilliance with modern digital forms, the series bridges past and present through visual exploration.",
+    previewDescription:
+      "At Focus Art Fair, Mammadov presents the series «Muraqqa - Data Miniatures». This work reinterprets historical miniatures, animating them through digital displays, silicon, and code. These miniatures celebrate diverse civilizations, finding renewed significance in our interconnected world. The «Holymath» series draws from the mathematical heritage of the Islamic Golden Age. Inspired by scholars like Al-Khwarizmi and Omar Khayyam, it highlights their contributions to algebra and geometry. By connecting historical brilliance with modern digital forms, the series bridges past and present through visual exploration.",
     artists: ["Orkhan Mammadov"],
     imageUrl: "/projects/orkhan-mammadov-focus-art-fair.jpg",
     imageAlt: "Algorithmic digital artwork with geometric patterns",

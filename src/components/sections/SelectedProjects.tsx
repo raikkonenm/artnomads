@@ -182,7 +182,7 @@ function ExhibitionGridCard({ project, idx }: { project: Project; idx: number })
         </div>
 
         <p className="mt-8 text-[0.94rem] leading-[1.72] text-void/64">
-          {project.description}
+          {project.previewDescription ?? project.description}
         </p>
 
       </div>
@@ -288,7 +288,7 @@ function ArchivePanel() {
             </p>
             <h4 className="mt-8 text-label text-void">Info</h4>
             <p className="mt-4 text-[0.92rem] leading-[1.72] text-void/64">
-              {activeProject.description}
+              {activeProject.previewDescription ?? activeProject.description}
             </p>
 
             <div className="mt-8 grid gap-7">
