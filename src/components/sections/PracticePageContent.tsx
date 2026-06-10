@@ -7,7 +7,8 @@ const services = [
     title: "VISIBILITY",
     subtitle: "Get seen.",
     description: "Publication on FindArt + shared with 127K+ audience.",
-    price: "FROM $19",
+    price: "FROM $10",
+    href: "https://www.findartplatform.com/",
     image: "/images/ad027148-85b8-4582-a81b-8a720d76b341.png",
     alt: "Exhibition and opportunity platform preview",
   },
@@ -16,7 +17,8 @@ const services = [
     title: "SYSTEM",
     subtitle: "Get organized.",
     description: "Workflow.art — open calls, deadlines, portfolio in one place.",
-    price: "FROM $XX",
+    price: "$49",
+    href: "https://www.artcnomad.com/workflow-art",
     image: "/images/image(832).png",
     alt: "Workflow.art dashboard preview",
   },
@@ -26,6 +28,7 @@ const services = [
     subtitle: "Make it happen.",
     description: "Personal curatorial support — CV, portfolio, applications, exhibitions.",
     price: "BY REQUEST",
+    href: "/#contact",
     image: "/images/b59b2f74-a0e2-4e4a-8a26-82b0d21c1649.png",
     alt: "Contemporary exhibition installation view",
   },
@@ -90,7 +93,14 @@ export function PracticePageContent() {
                     {service.subtitle}
                   </p>
                   <p className="mt-6 text-sm leading-[1.65] text-void/62">{service.description}</p>
-                  <p className="mt-6 text-label text-void/56">{service.price} {"\u2192"}</p>
+                  <Link
+                    href={service.href}
+                    target={service.href.startsWith("http") ? "_blank" : undefined}
+                    rel={service.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                    className="mt-6 inline-flex text-label text-void/56"
+                  >
+                    {service.price} {"\u2192"}
+                  </Link>
                 </div>
               </div>
             </article>

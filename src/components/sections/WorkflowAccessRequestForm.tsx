@@ -82,7 +82,7 @@ export function WorkflowAccessRequestForm() {
           {status === "sending" ? "Sending..." : "Request Access →"}
         </button>
         <p className="mt-5 text-sm text-void/45">
-          We&apos;ll get back to you within 1–3 days.
+          We&apos;ll get back to you within 1–2 days.
         </p>
         {status === "success" && (
           <p className="mt-4 text-sm text-void/68" role="status">

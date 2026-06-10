@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { WorkflowBrowserMockup } from "@/components/sections/WorkflowHeroCarousel";
 import { WorkflowAccessRequestForm } from "@/components/sections/WorkflowAccessRequestForm";
 
@@ -51,9 +50,9 @@ const modules = [
 
 function AccessLink({ className = "" }: { className?: string }) {
   return (
-    <Link href="/contact" className={`link-editorial inline-flex w-fit text-label text-void ${className}`}>
+    <a href="#workflow-access" className={`link-editorial inline-flex w-fit text-label text-void ${className}`}>
       GET ACCESS {"\u2192"}
-    </Link>
+    </a>
   );
 }
 
@@ -222,7 +221,7 @@ export default function WorkflowArtPage() {
         </div>
       </section>
 
-      <section className="border-t border-black/10">
+      <section id="workflow-access" className="scroll-mt-28 border-t border-black/10">
         <div className="container-gallery py-[var(--spacing-section)]">
           <p className="text-label mb-10 text-void/45">START NOW</p>
           <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
