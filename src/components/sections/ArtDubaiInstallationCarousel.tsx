@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useRef, useState } from "react";
 import { ImageLightbox, type LightboxImage } from "@/components/ui/ImageLightbox";
 
@@ -113,7 +112,7 @@ export function ArtDubaiInstallationCarousel({
           onPointerCancel={endDrag}
           className="flex cursor-grab snap-x snap-mandatory gap-6 overflow-x-auto px-[max(1.5rem,5.9vw)] pb-2 active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {images.map((image) => (
+          {images.map((image, index) => (
             <figure
               key={image.src}
               data-carousel-slide
@@ -132,12 +131,13 @@ export function ArtDubaiInstallationCarousel({
                   }}
                   className="relative h-full w-full cursor-zoom-in"
                 >
-                  <Image
+                  <img
                     src={image.src}
                     alt={image.alt}
-                    fill
-                    sizes="(max-width: 768px) 88vw, 78vw"
-                    className="object-contain"
+                    loading={index === 0 ? "eager" : "lazy"}
+                    decoding="async"
+                    draggable={false}
+                    className="h-full w-full object-contain object-center"
                     onError={() =>
                       setMissingImages((current) => ({
                         ...current,
