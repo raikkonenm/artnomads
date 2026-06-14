@@ -8,14 +8,22 @@ const description =
   "An international group exhibition exploring the body as a site of memory, migration, identity, vulnerability, and transformation within increasingly technologized and globalized societies. Positioned within Hong Kong's layered cultural environment, the project examined the body simultaneously as archive and frontier.";
 
 const installationImages = [
-  { src: "/projects/0.jpg", alt: "Body Is The Foreign Place installation view 1" },
-  { src: "/projects/1.jpg", alt: "Body Is The Foreign Place installation view 2" },
-  { src: "/projects/4.jpg", alt: "Body Is The Foreign Place installation view 3" },
-  { src: "/projects/5.jpg", alt: "Body Is The Foreign Place installation view 4" },
-  { src: "/projects/7.jpg", alt: "Body Is The Foreign Place installation view 5" },
-  { src: "/projects/8.jpg", alt: "Body Is The Foreign Place installation view 6" },
-  { src: "/projects/9.jpg", alt: "Body Is The Foreign Place installation view 7" },
-  { src: "/projects/13.jpg", alt: "Body Is The Foreign Place installation view 8" },
+  { src: "/exhibitions/Art_Central/0.jpg", alt: "Body Is The Foreign Place installation view 1" },
+  { src: "/exhibitions/Art_Central/1.jpg", alt: "Body Is The Foreign Place installation view 2" },
+  { src: "/exhibitions/Art_Central/3%281%29.jpg", alt: "Body Is The Foreign Place installation view 3" },
+  { src: "/exhibitions/Art_Central/4.jpg", alt: "Body Is The Foreign Place installation view 4" },
+  { src: "/exhibitions/Art_Central/5.jpg", alt: "Body Is The Foreign Place installation view 5" },
+  { src: "/exhibitions/Art_Central/6.jpg", alt: "Body Is The Foreign Place installation view 6" },
+  { src: "/exhibitions/Art_Central/7.jpg", alt: "Body Is The Foreign Place installation view 7" },
+  { src: "/exhibitions/Art_Central/8.jpg", alt: "Body Is The Foreign Place installation view 8" },
+  { src: "/exhibitions/Art_Central/9.jpg", alt: "Body Is The Foreign Place installation view 9" },
+  { src: "/exhibitions/Art_Central/10.jpg", alt: "Body Is The Foreign Place installation view 10" },
+  { src: "/exhibitions/Art_Central/11.jpg", alt: "Body Is The Foreign Place installation view 11" },
+  { src: "/exhibitions/Art_Central/13.jpg", alt: "Body Is The Foreign Place installation view 12" },
+  { src: "/exhibitions/Art_Central/14.jpg", alt: "Body Is The Foreign Place installation view 13" },
+  { src: "/exhibitions/Art_Central/15.jpg", alt: "Body Is The Foreign Place installation view 14" },
+  { src: "/exhibitions/Art_Central/2F7A1912%20copy.jpg", alt: "Body Is The Foreign Place installation view 15" },
+  { src: "/exhibitions/Art_Central/2F7A1923%20copy.jpg", alt: "Body Is The Foreign Place installation view 16" },
 ];
 
 const artworkImageOverrides = {
