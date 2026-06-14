@@ -112,7 +112,7 @@ export function ArtDubaiInstallationCarousel({
           onPointerCancel={endDrag}
           className="flex cursor-grab snap-x snap-mandatory gap-6 overflow-x-auto px-[max(1.5rem,5.9vw)] pb-2 active:cursor-grabbing [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {images.map((image, index) => (
+          {images.map((image) => (
             <figure
               key={image.src}
               data-carousel-slide
@@ -134,7 +134,7 @@ export function ArtDubaiInstallationCarousel({
                   <img
                     src={image.src}
                     alt={image.alt}
-                    loading={index === 0 ? "eager" : "lazy"}
+                    loading="eager"
                     decoding="async"
                     draggable={false}
                     className="h-full w-full object-contain object-center"
