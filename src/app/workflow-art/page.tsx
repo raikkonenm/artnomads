@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { WorkflowBrowserMockup } from "@/components/sections/WorkflowHeroCarousel";
-import { WorkflowAccessRequestForm } from "@/components/sections/WorkflowAccessRequestForm";
 
 export const metadata: Metadata = {
   title: {
@@ -48,10 +48,18 @@ const modules = [
   },
 ];
 
-function AccessLink({ className = "" }: { className?: string }) {
+const workflowAccessUrl = "https://findartplatform.gumroad.com/l/workflowart";
+
+function AccessLink({
+  className = "",
+  children = <>GET ACCESS {"\u2192"}</>,
+}: {
+  className?: string;
+  children?: ReactNode;
+}) {
   return (
-    <a href="#workflow-access" className={`link-editorial inline-flex w-fit text-label text-void ${className}`}>
-      GET ACCESS {"\u2192"}
+    <a href={workflowAccessUrl} className={`link-editorial inline-flex w-fit text-label text-void ${className}`}>
+      {children}
     </a>
   );
 }
@@ -229,7 +237,7 @@ export default function WorkflowArtPage() {
               Bring structure to your practice and focus on what matters.
             </h2>
             <div className="lg:col-start-10 lg:col-span-3">
-              <WorkflowAccessRequestForm />
+              <AccessLink>Request Access {"\u2192"}</AccessLink>
             </div>
           </div>
         </div>
