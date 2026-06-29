@@ -1,9 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  turbopack: {
-    root: process.cwd(),
-  },
   async headers() {
     const staticAssetHeaders = [
       {
@@ -15,10 +12,6 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/brand/:path*",
-        headers: staticAssetHeaders,
-      },
-      {
-        source: "/exhibitions/:path*",
         headers: staticAssetHeaders,
       },
       {
