@@ -18,7 +18,7 @@ export function Hero() {
     <section className="relative flex min-h-[680px] h-[100svh] overflow-hidden bg-void text-white">
       <div className="absolute inset-0" aria-hidden>
         <Image
-          src="/images/hero-art-dubai.jpg"
+          src="/images/hero-art-dubai.webp"
           alt=""
           fill
           priority

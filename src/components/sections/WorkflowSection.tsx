@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FadeIn } from "@/components/ui/FadeIn";
 
 const FEATURES = [
@@ -13,9 +13,31 @@ const FEATURES = [
 ];
 
 export function WorkflowSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+
+  useEffect(() => {
+    const container = containerRef.current;
+
+    if (!container || shouldLoadVideo) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadVideo(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "240px 0px" }
+    );
+
+    observer.observe(container);
+
+    return () => observer.disconnect();
+  }, [shouldLoadVideo]);
 
   const toggleMute = () => {
     const video = videoRef.current;
@@ -48,14 +70,19 @@ export function WorkflowSection() {
               <h2 className="text-label mb-5 text-void/45">
                 Workflow.art
               </h2>
-              <div className="relative h-[clamp(14rem,28vw,23rem)] overflow-hidden bg-white">
+              <div
+                ref={containerRef}
+                className="relative h-[clamp(14rem,28vw,23rem)] overflow-hidden bg-white"
+              >
                 <video
                   ref={videoRef}
-                  src="/videos/workflow-preview.mp4"
-                  autoPlay
+                  src={shouldLoadVideo ? "/videos/workflow-preview.mp4" : undefined}
+                  poster="/videos/workflow-preview-poster.webp"
+                  autoPlay={shouldLoadVideo}
                   muted={isMuted}
                   loop
                   playsInline
+                  preload="none"
                   onLoadedMetadata={updateProgress}
                   onTimeUpdate={updateProgress}
                   className="h-full w-full object-cover"

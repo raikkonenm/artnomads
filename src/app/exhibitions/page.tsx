@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import { ExhibitionsPageContent } from "@/components/sections/ExhibitionsPageContent";
 
 export const metadata: Metadata = {
@@ -7,10 +6,12 @@ export const metadata: Metadata = {
   description: "Explore current and previous exhibitions by Art Curatorial Nomads across Dubai, Hong Kong, Seoul, Tokyo, London, New York, Venice, and more.",
 };
 
-export default function ExhibitionsPage() {
-  return (
-    <Suspense fallback={null}>
-      <ExhibitionsPageContent />
-    </Suspense>
-  );
+export default async function ExhibitionsPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ city?: string }>;
+}) {
+  const params = await searchParams;
+
+  return <ExhibitionsPageContent selectedCity={params?.city?.toLowerCase() ?? null} />;
 }

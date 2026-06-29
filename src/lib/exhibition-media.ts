@@ -28,10 +28,23 @@ export interface ExhibitionMedia {
 }
 
 const imageExtension = /\.(jpe?g|png|webp|gif)$/i;
+const sourceImageExtension = /\.(jpe?g|png)$/i;
 const exhibitionsRoot = path.join(process.cwd(), "public", "exhibitions");
 
 function mediaSrc(...segments: string[]) {
   return `/${segments.map((segment) => encodeURIComponent(segment)).join("/")}`;
+}
+
+function optimizedMediaSrc(...segments: string[]) {
+  const fileName = segments.at(-1);
+
+  if (!fileName || !sourceImageExtension.test(fileName)) return mediaSrc(...segments);
+
+  const webpSegments = [...segments.slice(0, -1), fileName.replace(sourceImageExtension, ".webp")];
+
+  return existsSync(path.join(process.cwd(), "public", ...webpSegments))
+    ? mediaSrc(...webpSegments)
+    : mediaSrc(...segments);
 }
 
 function imageSize(filePath: string) {
@@ -65,6 +78,24 @@ function imageSize(filePath: string) {
   return undefined;
 }
 
+function hasSourceImageSibling(sectionPath: string, fileName: string) {
+  if (!fileName.toLowerCase().endsWith(".webp")) return false;
+
+  const baseName = fileName.replace(/\.webp$/i, "");
+
+  return [".jpg", ".jpeg", ".png"].some((extension) =>
+    existsSync(path.join(sectionPath, `${baseName}${extension}`))
+  );
+}
+
+function optimizedImageName(sectionPath: string, fileName: string) {
+  if (!sourceImageExtension.test(fileName)) return fileName;
+
+  const webpName = fileName.replace(sourceImageExtension, ".webp");
+
+  return existsSync(path.join(sectionPath, webpName)) ? webpName : fileName;
+}
+
 function findSection(folderPath: string, sectionNames: string[]) {
   if (!existsSync(folderPath)) return undefined;
 
@@ -86,12 +117,14 @@ function readSectionImages(folder: string, sectionNames: string[], label: string
 
   return readdirSync(sectionPath, { withFileTypes: true })
     .filter((file) => file.isFile() && imageExtension.test(file.name))
+    .filter((file) => !hasSourceImageSibling(sectionPath, file.name))
     .sort((first, second) => first.name.localeCompare(second.name, undefined, { numeric: true }))
     .map((file, index) => {
       const size = imageSize(path.join(sectionPath, file.name));
+      const srcName = optimizedImageName(sectionPath, file.name);
 
       return {
-        src: mediaSrc("exhibitions", folder, section, file.name),
+        src: mediaSrc("exhibitions", folder, section, srcName),
         alt: `${label} ${index + 1}`,
         isWide: size ? size.width / size.height > 1.15 : false,
       };
@@ -100,7 +133,7 @@ function readSectionImages(folder: string, sectionNames: string[], label: string
 
 export function getExhibitionMedia(config: ExhibitionPageConfig, project: Project): ExhibitionMedia {
   const artistBios = EXHIBITION_ARTIST_BIOS[config.projectId] ?? [];
-  const heroOverride = config.heroImagePath ? mediaSrc(...config.heroImagePath) : undefined;
+  const heroOverride = config.heroImagePath ? optimizedMediaSrc(...config.heroImagePath) : undefined;
 
   if (!config.folder) {
     return {

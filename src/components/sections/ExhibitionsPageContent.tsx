@@ -1,9 +1,5 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { useMemo } from "react";
 import { PROJECTS, type Project } from "@/lib/data";
 import { getExhibitionHref } from "@/lib/exhibition-pages";
 
@@ -53,10 +49,10 @@ const CARD_OVERRIDES: Record<string, Partial<Pick<Project, "venue" | "city" | "d
     city: "International",
     description:
       "Immersive exhibition exploring sensual perception, digital embodiment, and the translation of immaterial ideas into visual experience.",
-    imageUrl: "/exhibitions/Materialization%20of%20Sensual%20Ideas/20(1).jpg",
+    imageUrl: "/exhibitions/Materialization%20of%20Sensual%20Ideas/20(1).webp",
   },
   "source-code": {
-    imageUrl: "/exhibitions/sourcecode/bda6cbf8-5138-4eef-b5a3-b8b60c77ed45.png",
+    imageUrl: "/exhibitions/sourcecode/bda6cbf8-5138-4eef-b5a3-b8b60c77ed45.webp",
   },
   "cicconi-resin": {
     venue: "Residency",
@@ -140,7 +136,7 @@ function CurrentlySection({ project }: { project: Project }) {
           <Link href={projectHref(project)} className="group block">
             <div className="relative aspect-[16/10] overflow-hidden bg-white">
               <Image
-                src="/images/hero-art-dubai.jpg"
+                src="/images/hero-art-dubai.webp"
                 alt={project.imageAlt}
                 fill
                 priority
@@ -179,19 +175,13 @@ function CurrentlySection({ project }: { project: Project }) {
   );
 }
 
-export function ExhibitionsPageContent() {
-  const searchParams = useSearchParams();
-  const selectedCity = searchParams.get("city")?.toLowerCase() ?? null;
+export function ExhibitionsPageContent({ selectedCity = null }: { selectedCity?: string | null }) {
   const activeCity = CITY_FILTERS.find((city) => citySlug(city) === selectedCity) ?? null;
   const currentProject = findProject("natura-naturans");
 
-  const previousProjects = useMemo(
-    () =>
-      PREVIOUS_PROJECT_IDS.map(findProject)
-        .filter((project): project is Project => Boolean(project))
-        .sort((a, b) => yearValue(b) - yearValue(a)),
-    []
-  );
+  const previousProjects = PREVIOUS_PROJECT_IDS.map(findProject)
+    .filter((project): project is Project => Boolean(project))
+    .sort((a, b) => yearValue(b) - yearValue(a));
 
   const visiblePrevious = previousProjects.filter((project) => matchesCity(project, activeCity));
   const showCurrent = currentProject ? matchesCity(currentProject, activeCity) : false;

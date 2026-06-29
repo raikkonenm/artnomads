@@ -4,15 +4,15 @@ import { useEffect, useState } from "react";
 
 const screenshots = [
   {
-    src: "/projects/workflow.1.png",
+    src: "/projects/workflow.1.webp",
     alt: "Workflow.art dashboard overview",
   },
   {
-    src: "/projects/workflow.2.png",
+    src: "/projects/workflow.2.webp",
     alt: "Workflow.art project management dashboard",
   },
   {
-    src: "/projects/workflow.3.png",
+    src: "/projects/workflow.3.webp",
     alt: "Workflow.art calendar and tasks dashboard",
   },
 ];

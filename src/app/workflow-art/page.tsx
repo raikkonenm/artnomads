@@ -73,6 +73,8 @@ function PreviewImage({ src, alt, fit = "contain" }: { src: string; alt: string;
       <img
         src={src}
         alt={alt}
+        loading="lazy"
+        decoding="async"
         className={`h-full w-full object-center [filter:none] [image-rendering:auto] [transform:none] ${
           fit === "cover" ? "object-cover" : "object-contain"
         }`}
@@ -129,23 +131,23 @@ export default function WorkflowArtPage() {
               <article key={module.index} className="border-t border-black/10 pt-5">
                 {module.index === "01" ? (
                   <PreviewImage
-                    src="/exhibitions/Workflow.art/48a5d743-7b8b-48fb-8dab-bbe9a4f2cc71.png"
+                    src="/exhibitions/Workflow.art/48a5d743-7b8b-48fb-8dab-bbe9a4f2cc71.webp"
                     alt="Workflow.art open calls tracker preview"
                   />
                 ) : module.index === "02" ? (
                   <PreviewImage
-                    src="/projects/whitecub.png"
+                    src="/projects/whitecub.webp"
                     alt="Workflow.art contacts and relationships preview"
                     fit="cover"
                   />
                 ) : module.index === "03" ? (
                   <PreviewImage
-                    src="/exhibitions/Workflow.art/awards.png"
+                    src="/exhibitions/Workflow.art/awards.webp"
                     alt="Workflow.art applications manager preview"
                   />
                 ) : module.index === "04" ? (
                   <PreviewImage
-                    src="/images/edc788c7-3c03-42b6-a385-9fe7f0ae7940.png"
+                    src="/images/edc788c7-3c03-42b6-a385-9fe7f0ae7940.webp"
                     alt="Workflow.art portfolio builder preview"
                   />
                 ) : (

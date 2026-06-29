@@ -8,33 +8,33 @@ const description =
   "An international group exhibition exploring the body as a site of memory, migration, identity, vulnerability, and transformation within increasingly technologized and globalized societies. Positioned within Hong Kong's layered cultural environment, the project examined the body simultaneously as archive and frontier.";
 
 const installationImages = [
-  { src: "/exhibitions/Art_Central/0.jpg", alt: "Body Is The Foreign Place installation view 1" },
-  { src: "/exhibitions/Art_Central/1.jpg", alt: "Body Is The Foreign Place installation view 2" },
-  { src: "/exhibitions/Art_Central/3.jpg", alt: "Body Is The Foreign Place installation view 3" },
-  { src: "/exhibitions/Art_Central/3.1.jpg", alt: "Body Is The Foreign Place installation view 4" },
-  { src: "/exhibitions/Art_Central/3.2.jpg", alt: "Body Is The Foreign Place installation view 5" },
-  { src: "/exhibitions/Art_Central/4.jpg", alt: "Body Is The Foreign Place installation view 6" },
-  { src: "/exhibitions/Art_Central/5.jpg", alt: "Body Is The Foreign Place installation view 7" },
-  { src: "/exhibitions/Art_Central/6.jpg", alt: "Body Is The Foreign Place installation view 8" },
-  { src: "/exhibitions/Art_Central/7.jpg", alt: "Body Is The Foreign Place installation view 9" },
-  { src: "/exhibitions/Art_Central/8.jpg", alt: "Body Is The Foreign Place installation view 10" },
-  { src: "/exhibitions/Art_Central/9.jpg", alt: "Body Is The Foreign Place installation view 11" },
-  { src: "/exhibitions/Art_Central/10.jpg", alt: "Body Is The Foreign Place installation view 12" },
-  { src: "/exhibitions/Art_Central/11.jpg", alt: "Body Is The Foreign Place installation view 13" },
-  { src: "/exhibitions/Art_Central/13.jpg", alt: "Body Is The Foreign Place installation view 14" },
-  { src: "/exhibitions/Art_Central/14.jpg", alt: "Body Is The Foreign Place installation view 15" },
-  { src: "/exhibitions/Art_Central/15.jpg", alt: "Body Is The Foreign Place installation view 16" },
+  { src: "/exhibitions/Art_Central/0.webp", alt: "Body Is The Foreign Place installation view 1" },
+  { src: "/exhibitions/Art_Central/1.webp", alt: "Body Is The Foreign Place installation view 2" },
+  { src: "/exhibitions/Art_Central/3.webp", alt: "Body Is The Foreign Place installation view 3" },
+  { src: "/exhibitions/Art_Central/3.1.webp", alt: "Body Is The Foreign Place installation view 4" },
+  { src: "/exhibitions/Art_Central/3.2.webp", alt: "Body Is The Foreign Place installation view 5" },
+  { src: "/exhibitions/Art_Central/4.webp", alt: "Body Is The Foreign Place installation view 6" },
+  { src: "/exhibitions/Art_Central/5.webp", alt: "Body Is The Foreign Place installation view 7" },
+  { src: "/exhibitions/Art_Central/6.webp", alt: "Body Is The Foreign Place installation view 8" },
+  { src: "/exhibitions/Art_Central/7.webp", alt: "Body Is The Foreign Place installation view 9" },
+  { src: "/exhibitions/Art_Central/8.webp", alt: "Body Is The Foreign Place installation view 10" },
+  { src: "/exhibitions/Art_Central/9.webp", alt: "Body Is The Foreign Place installation view 11" },
+  { src: "/exhibitions/Art_Central/10.webp", alt: "Body Is The Foreign Place installation view 12" },
+  { src: "/exhibitions/Art_Central/11.webp", alt: "Body Is The Foreign Place installation view 13" },
+  { src: "/exhibitions/Art_Central/13.webp", alt: "Body Is The Foreign Place installation view 14" },
+  { src: "/exhibitions/Art_Central/14.webp", alt: "Body Is The Foreign Place installation view 15" },
+  { src: "/exhibitions/Art_Central/15.webp", alt: "Body Is The Foreign Place installation view 16" },
 ];
 
 const artworkImageOverrides = {
-  "0-0": "/projects/3(1).jpg",
-  "0-1": "/projects/Chunkook_Lee_Work_1.jpg",
-  "1-0": "/projects/15.jpg",
-  "1-1": "/projects/10.jpg",
-  "2-0": "/projects/14.jpg",
-  "2-1": "/projects/11.jpg",
-  "3-0": "/projects/Chunkook_Lee_Work_5.jpg",
-  "3-1": "/projects/Chunkook_Lee_Work_2.jpg",
+  "0-0": "/projects/3(1).webp",
+  "0-1": "/projects/Chunkook_Lee_Work_1.webp",
+  "1-0": "/projects/15.webp",
+  "1-1": "/projects/10.webp",
+  "2-0": "/projects/14.webp",
+  "2-1": "/projects/11.webp",
+  "3-0": "/projects/Chunkook_Lee_Work_5.webp",
+  "3-1": "/projects/Chunkook_Lee_Work_2.webp",
 };
 
 export const metadata: Metadata = {
@@ -50,7 +50,7 @@ export default function BodyIsTheForeignPlacePage() {
       <section className="relative flex min-h-[680px] h-[100svh] overflow-hidden bg-void text-white">
         <div className="absolute inset-0" aria-hidden>
           <Image
-            src="/projects/2F7A1912 copy.jpg"
+            src="/projects/2F7A1912 copy.webp"
             alt=""
             fill
             priority
@@ -140,7 +140,7 @@ export default function BodyIsTheForeignPlacePage() {
       <section className="border-t border-black/10">
         <div className="container-gallery py-[var(--spacing-section)]">
           <p className="text-label mb-10 text-void/45">FEATURED WORKS</p>
-          <ArtDubaiFeaturedWorks featuredImageSrc="/projects/5.jpg" imageOverrides={artworkImageOverrides} />
+          <ArtDubaiFeaturedWorks featuredImageSrc="/projects/5.webp" imageOverrides={artworkImageOverrides} />
         </div>
       </section>
 

@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { Tag } from "@/components/ui/Tag";
 import { FEATURED_EXHIBITIONS } from "@/lib/data";

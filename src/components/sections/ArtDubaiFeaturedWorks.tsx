@@ -17,7 +17,7 @@ const naturaNaturans: Work = {
   title: "Natura Naturans",
   year: "2026",
   medium: "Digital / installation",
-  src: "/projects/natura-naturans-artwork.jpg",
+  src: "/projects/natura-naturans-artwork.webp",
 };
 
 const twoColumnRows = [
@@ -27,7 +27,7 @@ const twoColumnRows = [
       title: "Natura Naturata",
       year: "2026",
       medium: "Digital / textile / installation",
-      src: "/projects/f2.png",
+      src: "/projects/f2.webp",
       captionLines: [
         "Chunkook Lee, 1995, South Korean",
         "Angel, 2026",
@@ -40,7 +40,7 @@ const twoColumnRows = [
       title: "Untitled",
       year: "2026",
       medium: "Sculpture",
-      src: "/projects/f1.png",
+      src: "/projects/f1.webp",
       captionLines: [
         "Chunkook Lee",
         "Untitled, 2026",
@@ -54,7 +54,7 @@ const twoColumnRows = [
       title: "Natura Naturata",
       year: "2026",
       medium: "Digital / textile / installation",
-      src: "/projects/f3 (1).jpg",
+      src: "/projects/f3 (1).webp",
       captionLines: [
         "Chunkook Lee, 1995, South Korean",
         "Cherry Tomato, 2025",
@@ -67,7 +67,7 @@ const twoColumnRows = [
       title: "Untitled",
       year: "2026",
       medium: "Sculpture",
-      src: "/projects/f3 (2).jpg",
+      src: "/projects/f3 (2).webp",
       captionLines: [
         "Chunkook Lee, 1995, South Korean",
         "Soft Fall, 2025",
@@ -82,7 +82,7 @@ const twoColumnRows = [
       title: "Natura Naturata",
       year: "2026",
       medium: "Digital / textile / installation",
-      src: "/projects/f3 (3).jpg",
+      src: "/projects/f3 (3).webp",
       captionLines: [
         "Chunkook Lee, 1995, South Korean",
         "Bone Garden, 2025",
@@ -95,7 +95,7 @@ const twoColumnRows = [
       title: "Untitled",
       year: "2026",
       medium: "Sculpture",
-      src: "/projects/f3 (4).jpg",
+      src: "/projects/f3 (4).webp",
       captionLines: [
         "Chunkook Lee, 1995, South Korean",
         "New Dandelion, 2026",
@@ -110,7 +110,7 @@ const twoColumnRows = [
       title: "Natura Naturata",
       year: "2026",
       medium: "Digital / textile / installation",
-      src: "/projects/f3 (5).jpg",
+      src: "/projects/f3 (5).webp",
       captionLines: [
         "Chunkook Lee, 1995, South Korean",
         "Shell, 2025",
@@ -123,7 +123,7 @@ const twoColumnRows = [
       title: "Untitled",
       year: "2026",
       medium: "Sculpture",
-      src: "/projects/lee.jpg",
+      src: "/projects/lee.webp",
       captionLines: [
         "Chunkook Lee, 1995, South Korean",
         "Trial, 2025",

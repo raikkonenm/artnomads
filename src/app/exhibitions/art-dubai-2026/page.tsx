@@ -18,7 +18,7 @@ export default function ArtDubai2026Page() {
       <section className="relative flex min-h-[680px] h-[100svh] overflow-hidden bg-void text-white">
         <div className="absolute inset-0" aria-hidden>
           <Image
-            src="/projects/exhibition_view_1.png"
+            src="/projects/exhibition_view_1.webp"
             alt=""
             fill
             priority

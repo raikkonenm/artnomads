@@ -10,27 +10,27 @@ type InstallationImage = {
 
 const defaultImages: InstallationImage[] = [
   {
-    src: "/projects/ad1.png",
+    src: "/projects/ad1.webp",
     alt: "Art Dubai installation view 1",
   },
   {
-    src: "/projects/ad2.png",
+    src: "/projects/ad2.webp",
     alt: "Art Dubai installation view 2",
   },
   {
-    src: "/projects/ad3.png",
+    src: "/projects/ad3.webp",
     alt: "Art Dubai installation view 3",
   },
   {
-    src: "/projects/ad4.png",
+    src: "/projects/ad4.webp",
     alt: "Art Dubai installation view 4",
   },
   {
-    src: "/projects/ad5.jpg",
+    src: "/projects/ad5.webp",
     alt: "Art Dubai installation view 5",
   },
   {
-    src: "/projects/ad6.png",
+    src: "/projects/ad6.webp",
     alt: "Art Dubai installation view 6",
   },
 ];
@@ -134,7 +134,7 @@ export function ArtDubaiInstallationCarousel({
                   <img
                     src={image.src}
                     alt={image.alt}
-                    loading="eager"
+                    loading="lazy"
                     decoding="async"
                     draggable={false}
                     className="h-full w-full object-contain object-center"

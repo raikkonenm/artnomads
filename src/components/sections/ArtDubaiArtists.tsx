@@ -6,7 +6,7 @@ import { useState } from "react";
 const artists = [
   {
     name: "Chunkook Lee",
-    image: "/projects/chunkook.jpg",
+    image: "/projects/chunkook.webp",
     caption: "Chunkook Lee, Art Dubai 2026",
     paragraphs: [
       "Chunkook Lee is a South Korean artist working between sculpture, digitally modelled forms, and material transformation. His practice investigates growth, instability, biological mutation, and the relationship between virtual image systems and physical matter.",
@@ -16,7 +16,7 @@ const artists = [
   },
   {
     name: "Fatma Lootah",
-    image: "/projects/fatmaa.jpg",
+    image: "/projects/fatmaa.webp",
     caption: "Fatma Lootah, Art Dubai 2026",
     paragraphs: [
       "Fatma Lootah is a UAE artist whose practice bridges Arabic heritage, digital image-making, textile language, and contemporary visual experimentation. Her work explores memory, ornament, mythology, and transformation through immersive environments and hybrid material systems.",

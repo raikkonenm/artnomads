@@ -9,7 +9,7 @@ const services = [
     description: "Publication on FindArt + shared with 127K+ audience.",
     price: "FROM $10",
     href: "https://www.findartplatform.com/",
-    image: "/images/ad027148-85b8-4582-a81b-8a720d76b341.png",
+    image: "/images/ad027148-85b8-4582-a81b-8a720d76b341.webp",
     alt: "Exhibition and opportunity platform preview",
   },
   {
@@ -19,7 +19,7 @@ const services = [
     description: "Workflow.art — open calls, deadlines, portfolio in one place.",
     price: "$49",
     href: "https://www.artcnomad.com/workflow-art",
-    image: "/images/image(832).png",
+    image: "/images/image(832).webp",
     alt: "Workflow.art dashboard preview",
   },
   {
@@ -29,7 +29,7 @@ const services = [
     description: "Personal curatorial support — CV, portfolio, applications, exhibitions.",
     price: "BY REQUEST",
     href: "/#contact",
-    image: "/images/b59b2f74-a0e2-4e4a-8a26-82b0d21c1649.png",
+    image: "/images/b59b2f74-a0e2-4e4a-8a26-82b0d21c1649.webp",
     alt: "Contemporary exhibition installation view",
   },
 ];
@@ -39,7 +39,7 @@ export function PracticePageContent() {
     <div className="section-paper">
       <section className="relative flex min-h-[100svh] overflow-hidden bg-void text-white">
         <Image
-          src="/projects/exhibition_view_1.png"
+          src="/projects/exhibition_view_1.webp"
           alt=""
           fill
           priority

@@ -1,13 +1,35 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { TEAM } from "@/lib/data";
 
 export function ManifestoSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [activeMember, setActiveMember] = useState<(typeof TEAM)[number] | null>(null);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+
+  useEffect(() => {
+    const container = containerRef.current;
+
+    if (!container || shouldLoadVideo) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldLoadVideo(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "240px 0px" }
+    );
+
+    observer.observe(container);
+
+    return () => observer.disconnect();
+  }, [shouldLoadVideo]);
 
   const toggleMute = () => {
     const video = videoRef.current;
@@ -119,14 +141,16 @@ export function ManifestoSection() {
           </div>
 
           <FadeIn delay={0.1} direction="up" className="lg:col-start-8 lg:col-span-5">
-            <div className="relative aspect-[4/5] overflow-hidden bg-white lg:mt-3">
+            <div ref={containerRef} className="relative aspect-[4/5] overflow-hidden bg-white lg:mt-3">
               <video
                 ref={videoRef}
-                src="/videos/our-practice-video.mp4"
-                autoPlay
+                src={shouldLoadVideo ? "/videos/our-practice-video.mp4" : undefined}
+                poster="/videos/our-practice-video-poster.webp"
+                autoPlay={shouldLoadVideo}
                 muted={isMuted}
                 loop
                 playsInline
+                preload="none"
                 className="h-full w-full object-cover"
               />
               <button
