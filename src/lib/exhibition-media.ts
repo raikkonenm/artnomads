@@ -1,8 +1,7 @@
-import { existsSync, readdirSync, readFileSync } from "node:fs";
-import path from "node:path";
 import type { Project } from "@/lib/data";
 import type { ExhibitionPageConfig } from "@/lib/exhibition-pages";
 import { EXHIBITION_ARTIST_BIOS, type ArtistBio } from "@/lib/artist-bios";
+import { EXHIBITION_MEDIA_MANIFEST } from "@/lib/generated/exhibition-media-manifest";
 
 export interface ExhibitionMediaItem {
   src: string;
@@ -27,9 +26,15 @@ export interface ExhibitionMedia {
   overrideLocation?: string;
 }
 
-const imageExtension = /\.(jpe?g|png|webp|gif)$/i;
 const sourceImageExtension = /\.(jpe?g|png)$/i;
-const exhibitionsRoot = path.join(process.cwd(), "public", "exhibitions");
+
+interface ManifestSection {
+  name: string;
+  images: {
+    name: string;
+    isWide: boolean;
+  }[];
+}
 
 function mediaSrc(...segments: string[]) {
   return `/${segments.map((segment) => encodeURIComponent(segment)).join("/")}`;
@@ -40,95 +45,31 @@ function optimizedMediaSrc(...segments: string[]) {
 
   if (!fileName || !sourceImageExtension.test(fileName)) return mediaSrc(...segments);
 
-  const webpSegments = [...segments.slice(0, -1), fileName.replace(sourceImageExtension, ".webp")];
-
-  return existsSync(path.join(process.cwd(), "public", ...webpSegments))
-    ? mediaSrc(...webpSegments)
-    : mediaSrc(...segments);
-}
-
-function imageSize(filePath: string) {
-  const data = readFileSync(filePath);
-
-  if (data.toString("ascii", 1, 4) === "PNG") {
-    return { width: data.readUInt32BE(16), height: data.readUInt32BE(20) };
-  }
-
-  if (data[0] !== 0xff || data[1] !== 0xd8) return undefined;
-
-  let offset = 2;
-  while (offset < data.length) {
-    if (data[offset] !== 0xff) {
-      offset += 1;
-      continue;
-    }
-
-    const marker = data[offset + 1];
-    if (marker >= 0xc0 && marker <= 0xc3) {
-      return {
-        height: data.readUInt16BE(offset + 5),
-        width: data.readUInt16BE(offset + 7),
-      };
-    }
-
-    const length = data.readUInt16BE(offset + 2);
-    offset += length + 2;
-  }
-
-  return undefined;
-}
-
-function hasSourceImageSibling(sectionPath: string, fileName: string) {
-  if (!fileName.toLowerCase().endsWith(".webp")) return false;
-
-  const baseName = fileName.replace(/\.webp$/i, "");
-
-  return [".jpg", ".jpeg", ".png"].some((extension) =>
-    existsSync(path.join(sectionPath, `${baseName}${extension}`))
-  );
-}
-
-function optimizedImageName(sectionPath: string, fileName: string) {
-  if (!sourceImageExtension.test(fileName)) return fileName;
-
-  const webpName = fileName.replace(sourceImageExtension, ".webp");
-
-  return existsSync(path.join(sectionPath, webpName)) ? webpName : fileName;
+  return mediaSrc(...segments.slice(0, -1), fileName.replace(sourceImageExtension, ".webp"));
 }
 
 function findSection(folderPath: string, sectionNames: string[]) {
-  if (!existsSync(folderPath)) return undefined;
-
   const normalizedNames = sectionNames.map((name) => name.toLowerCase());
-  const entry = readdirSync(folderPath, { withFileTypes: true }).find(
-    (candidate) => candidate.isDirectory() && normalizedNames.includes(candidate.name.toLowerCase())
+  const entry = EXHIBITION_MEDIA_MANIFEST[folderPath as keyof typeof EXHIBITION_MEDIA_MANIFEST];
+  const sectionName = Object.keys(entry?.sections ?? {}).find((candidate) =>
+    normalizedNames.includes(candidate)
   );
 
-  return entry?.name;
+  return sectionName
+    ? (entry?.sections[sectionName as keyof typeof entry.sections] as ManifestSection)
+    : undefined;
 }
 
 function readSectionImages(folder: string, sectionNames: string[], label: string) {
-  const folderPath = path.join(exhibitionsRoot, folder);
-  const section = findSection(folderPath, sectionNames);
+  const section = findSection(folder, sectionNames);
 
   if (!section) return [];
 
-  const sectionPath = path.join(folderPath, section);
-
-  return readdirSync(sectionPath, { withFileTypes: true })
-    .filter((file) => file.isFile() && imageExtension.test(file.name))
-    .filter((file) => !hasSourceImageSibling(sectionPath, file.name))
-    .sort((first, second) => first.name.localeCompare(second.name, undefined, { numeric: true }))
-    .map((file, index) => {
-      const size = imageSize(path.join(sectionPath, file.name));
-      const srcName = optimizedImageName(sectionPath, file.name);
-
-      return {
-        src: mediaSrc("exhibitions", folder, section, srcName),
-        alt: `${label} ${index + 1}`,
-        isWide: size ? size.width / size.height > 1.15 : false,
-      };
-    });
+  return section.images.map((file, index) => ({
+    src: mediaSrc("exhibitions", folder, section.name, file.name),
+    alt: `${label} ${index + 1}`,
+    isWide: file.isWide,
+  }));
 }
 
 export function getExhibitionMedia(config: ExhibitionPageConfig, project: Project): ExhibitionMedia {

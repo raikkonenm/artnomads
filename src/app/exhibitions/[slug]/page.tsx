@@ -5,6 +5,8 @@ import { PROJECTS } from "@/lib/data";
 import { getExhibitionMedia } from "@/lib/exhibition-media";
 import { EXHIBITION_PAGE_CONFIGS, getExhibitionPageConfig } from "@/lib/exhibition-pages";
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return EXHIBITION_PAGE_CONFIGS.map((config) => ({ slug: config.slug }));
 }
