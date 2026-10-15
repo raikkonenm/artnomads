@@ -11,7 +11,7 @@ export function CurrentlySection() {
   return (
     <section className="section-light">
       <div className="container-gallery pb-12 pt-[var(--spacing-section)] lg:pb-16">
-        <div className="grid gap-16 lg:grid-cols-[8rem_minmax(0,1fr)] lg:gap-[18vw]">
+        <div className="grid gap-5 lg:grid-cols-[8rem_minmax(0,1fr)] lg:gap-[18vw]">
           <FadeIn>
             <p className="text-label text-void/45">DETAILS</p>
           </FadeIn>
