@@ -19,20 +19,19 @@ export function CurrentlySection() {
 
           <FadeIn delay={0.08} direction="up" className="max-w-[42rem] lg:justify-self-end">
             <p className="text-[clamp(1rem,1.2vw,1.16rem)] leading-[1.86] text-void/68">
-              Inspired by the philosophy of Baruch Spinoza, the exhibition explores the
-              relationship between nature as creator and nature as creation. Centred
-              around a large-scale installation by acclaimed UAE artist and cultural
-              ambassador Fatma Lootah, whose experimental contemporary practice remains
-              deeply rooted in Arabic heritage and visual tradition.
+              Objects are collected, named, and preserved, allowing us to return to what
+              has not entirely disappeared. This possibility of return is part of what
+              draws Yasy Bachurina to museums. Yet even when an object remains unchanged,
+              the way we encounter and understand it may shift over time. To preserve
+              something is not to fix a single interpretation, and even familiar forms may
+              hold possibilities yet to be discovered. In this exhibition, paintings and
+              objects coexist without reconstructing a particular period or resolving into
+              a single narrative. Recognition does not bring our relationship with a thing
+              to an end.
             </p>
 
-            <div className="mt-12">
-              <p className="text-label mb-3 text-void/35">COLLABORATOR</p>
-              <p className="text-sm leading-relaxed text-void/62">RARARES Art Gallery</p>
-            </div>
-
             <Link
-              href="/exhibitions/art-dubai-2026"
+              href="/exhibitions/preserved-unfixed"
               className="link-editorial mt-10 inline-flex w-fit text-label text-void"
             >
               VISIT EXHIBITION ↗

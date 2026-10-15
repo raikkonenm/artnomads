@@ -40,10 +40,10 @@ export const PROJECTS: Project[] = [
     dateRange: "March 2026",
     description:
       "Inspired by the philosophy of Baruch Spinoza, the exhibition explored the relationship between nature as creator and nature as creation. Centred around a large-scale installation by acclaimed UAE artist and cultural ambassador Fatma Lootah, whose experimental contemporary practice remains deeply rooted in Arabic heritage and visual tradition.",
-    artists: ["Fatma Lootah"],
+    artists: ["Fatma Lootah", "Chunkook Lee"],
     collaborators: ["RARARES Art Gallery"],
-    imageUrl: "/projects/natura-naturans-artwork.webp",
-    imageAlt: "Immersive light installation with warm golden tones",
+    imageUrl: "/images/hero-art-dubai.webp",
+    imageAlt: "Art Dubai booth presentation for Natura Naturans, Natura Naturata",
     featured: true,
     href: "#projects",
   },

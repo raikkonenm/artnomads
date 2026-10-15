@@ -310,7 +310,7 @@ function ArchivePanel() {
 
 export function SelectedProjects() {
   const featureModules = FEATURED_PROJECTS.filter(
-    (project) => project.id !== "natura-naturans" && !GRID_PROJECT_IDS.includes(project.id)
+    (project) => !GRID_PROJECT_IDS.includes(project.id)
   );
   const gridProjects = GRID_PROJECT_IDS.map((id) =>
     FEATURED_PROJECTS.find((project) => project.id === id)
