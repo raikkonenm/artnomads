@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { FadeIn } from "@/components/ui/FadeIn";
 import { PROJECTS } from "@/lib/data";
 
@@ -30,12 +29,14 @@ export function CurrentlySection() {
               to an end.
             </p>
 
+            {/* Hidden until the /exhibitions/preserved-unfixed page is created.
             <Link
               href="/exhibitions/preserved-unfixed"
               className="link-editorial mt-10 inline-flex w-fit text-label text-void"
             >
               VISIT EXHIBITION ↗
             </Link>
+            */}
           </FadeIn>
         </div>
       </div>
