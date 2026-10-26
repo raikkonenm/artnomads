@@ -962,5 +962,8 @@ export const EXHIBITION_MEDIA_MANIFEST = {
   },
   "Workflow.art": {
     "sections": {}
+  },
+  "Yasy": {
+    "sections": {}
   }
 } as const;

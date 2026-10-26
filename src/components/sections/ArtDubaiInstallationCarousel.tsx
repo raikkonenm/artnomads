@@ -64,33 +64,44 @@ export function ArtDubaiInstallationCarousel({
   const onPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
     const container = scrollRef.current;
 
-    if (!container) return;
+    if (!container || event.button !== 0) return;
 
     drag.current = {
-      active: true,
+      active: event.pointerType === "mouse",
       moved: false,
       startX: event.clientX,
       scrollLeft: container.scrollLeft,
     };
-    container.setPointerCapture(event.pointerId);
   };
 
   const onPointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
     const container = scrollRef.current;
 
     if (!container || !drag.current.active) return;
+    if (event.buttons !== 1) {
+      drag.current.active = false;
+      container.style.scrollSnapType = "";
+      return;
+    }
 
     if (Math.abs(event.clientX - drag.current.startX) > 5) {
       drag.current.moved = true;
+      container.style.scrollSnapType = "none";
+      if (!container.hasPointerCapture(event.pointerId)) {
+        container.setPointerCapture(event.pointerId);
+      }
     }
 
-    container.scrollLeft = drag.current.scrollLeft - (event.clientX - drag.current.startX);
+    if (drag.current.moved) {
+      container.scrollLeft = drag.current.scrollLeft - (event.clientX - drag.current.startX);
+    }
   };
 
   const endDrag = (event: React.PointerEvent<HTMLDivElement>) => {
     const container = scrollRef.current;
 
     drag.current.active = false;
+    if (container) container.style.scrollSnapType = "";
 
     if (container?.hasPointerCapture(event.pointerId)) {
       container.releasePointerCapture(event.pointerId);
@@ -126,8 +137,8 @@ export function ArtDubaiInstallationCarousel({
                 <button
                   type="button"
                   aria-label={`Open ${image.alt}`}
-                  onClick={() => {
-                    if (!drag.current.moved) setSelectedImage(image);
+                  onClick={(event) => {
+                    if (event.detail === 0 || !drag.current.moved) setSelectedImage(image);
                   }}
                   className="relative h-full w-full cursor-zoom-in"
                 >
@@ -155,7 +166,7 @@ export function ArtDubaiInstallationCarousel({
           type="button"
           aria-label="Previous installation view"
           onClick={() => scrollBySlide(-1)}
-          className="pointer-events-none absolute left-[max(1.5rem,5.9vw)] top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center border border-white/55 bg-black/12 text-lg leading-none text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 hover:bg-black/22 group-hover:pointer-events-auto group-hover:opacity-100"
+          className="pointer-events-none absolute left-[max(1.5rem,5.9vw)] top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center border border-white/55 bg-black/12 text-lg leading-none text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 hover:bg-black/22 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100"
         >
           {"\u2190"}
         </button>
@@ -163,7 +174,7 @@ export function ArtDubaiInstallationCarousel({
           type="button"
           aria-label="Next installation view"
           onClick={() => scrollBySlide(1)}
-          className="pointer-events-none absolute right-[max(1.5rem,5.9vw)] top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center border border-white/55 bg-black/12 text-lg leading-none text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 hover:bg-black/22 group-hover:pointer-events-auto group-hover:opacity-100"
+          className="pointer-events-none absolute right-[max(1.5rem,5.9vw)] top-1/2 z-10 grid h-11 w-11 -translate-y-1/2 place-items-center border border-white/55 bg-black/12 text-lg leading-none text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 hover:bg-black/22 group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100"
         >
           {"\u2192"}
         </button>
