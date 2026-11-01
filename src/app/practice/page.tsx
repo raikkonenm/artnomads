@@ -2,11 +2,8 @@ import type { Metadata } from "next";
 import { PracticePageContent } from "@/components/sections/PracticePageContent";
 
 export const metadata: Metadata = {
-  title: {
-    absolute: "Practice – Artist Development | ArtNomad Curators",
-  },
-  description:
-    "Professional development for contemporary artists. CV, website, strategy, and international network. From $300.",
+  title: { absolute: "Artist Reviews & Exhibition Development | Art Curatorial Nomads" },
+  description: "Written artist practice reviews, personalised development strategies and exhibition development with Eugene Sheidlin and Maria Raikkonen of Art Curatorial Nomads.",
 };
 
 export default function PracticePage() {
