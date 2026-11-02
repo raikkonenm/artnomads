@@ -6,6 +6,10 @@ import { useRef, useState, type FormEvent, type KeyboardEvent, type MouseEvent }
 import { EXHIBITION_SERVICE, FAQ, HERO_PROJECT, NETWORK, PEOPLE, PLATFORMS, PROCESS, PROJECTS, SERVICES } from "./practice-content";
 import s from "./practice.module.css";
 
+function Arrow({ previous = false }: { previous?: boolean }) {
+  return <svg viewBox="0 0 44 18" fill="none" aria-hidden="true" focusable="false"><path d={previous ? "M41 9H3M11 1 3 9l8 8" : "M3 9h38M33 1l8 8-8 8"} stroke="currentColor" strokeWidth="1.6" vectorEffect="non-scaling-stroke" /></svg>;
+}
+
 export function PracticePageContent() {
   const [service, setService] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
@@ -103,33 +107,35 @@ export function PracticePageContent() {
       <section id="consulting-formats" className={s.section} aria-labelledby="formats-title">
         <div className={s.sectionHeading}><h2 id="formats-title">Services</h2><p className={s.serviceArchiveNote}>Exhibition and artwork documentation from the ACN archive.</p></div>
         <div className={s.services}>{SERVICES.map((offer, index) => (
-          <article className={s.service} key={offer.name}>
+          <article className={s.service} key={offer.name} aria-labelledby={`service-${index + 1}-title`}>
             <Link href={offer.imageHref} className={s.serviceImage} aria-label={`View exhibition: ${offer.imageCredit}`} title={offer.imageCredit}><Image src={offer.image} alt={offer.alt} fill sizes="(max-width: 760px) 100vw, 32vw" style={{ objectPosition: offer.position }} /></Link>
-            <div className={s.serviceHeading}><h3>{offer.name}</h3><p className={index === 2 ? s.enquiryPrice : s.price}>{offer.price}</p></div>
+            <h3 id={`service-${index + 1}-title`} className={s.serviceTitle}>{offer.name}</h3>
+            <p className={s.servicePrice}>{offer.price}</p>
             <p className={s.offerDescription}>{offer.description}</p>
             <div className={s.serviceScope}><p className={s.scopeLabel}>{offer.scopeLabel}</p><ul className={s.scopeList}>{offer.scope.map((line) => <li key={line}>{line}</li>)}</ul></div>
-            <dl className={s.serviceSummary}><div><dt>Format</dt><dd>{offer.format}{offer.pages && <> · <span className={s.formatPages}>{offer.pages}</span></>}</dd></div><div><dt>{offer.timelineLabel}</dt><dd>{offer.timeline}</dd></div></dl>
-            <a href="#consulting-enquiry" className={`${s.button} ${s.outlineButton}`} onClick={(event) => chooseService(event, offer.value)}><span>{offer.cta}</span><span aria-hidden>↗</span></a>
+            <dl className={s.serviceSummary}><div><dt>Format</dt><dd>{offer.format}{offer.pages && <span className={s.formatPages}>{offer.pages}</span>}</dd></div><div><dt>{offer.timelineLabel}</dt><dd>{offer.timeline}</dd></div></dl>
+            <a href="#consulting-enquiry" className={s.serviceEnquire} onClick={(event) => chooseService(event, offer.value)} aria-label={`Enquire about ${offer.name}`}><span>ENQUIRE</span><span aria-hidden="true">→</span></a>
           </article>
         ))}</div>
         <p className={s.followUp}>Both written services include one round of follow-up questions by email within 14 days after you receive your document.</p>
       </section>
 
       <section className={s.processSection} aria-labelledby="process-title">
-        <div className={s.processHeading}><h2 id="process-title">How it works</h2><p className={s.eyebrow}>For written reviews and development strategies.</p></div>
-        <ol className={s.process}>{PROCESS.map((title, i) => <li key={title}><span className={s.eyebrow}>0{i + 1}</span><h3>{title}</h3></li>)}</ol>
-        <p className={s.processTimeline}><strong>Review:</strong> 7–10 days. <strong>Strategy:</strong> within 14 days. <span>After all required materials are received; the strategy also requires a completed strategic brief.</span></p>
-        <details className={s.materials}><summary>What materials should I prepare?</summary><ul><li>Portfolio PDF or link, ideally with 10–15 selected works.</li><li>Links to your website and Instagram, where available.</li><li>Your artist statement, CV and specific questions, if available.</li></ul><p>For Artist Development Strategy, we also ask for a short strategic brief covering your goal, location, available time, budget and deadlines.</p></details>
+        <div className={s.processHeading}><h2 id="process-title">How it works</h2><p>For Artist Practice Reviews and Artist Development Strategies.</p></div>
+        <ol className={s.process}>{PROCESS.map((step, i) => <li key={step.title}><span className={s.processNumber}>0{i + 1}</span><div className={s.processCopy}><h3>{step.title}</h3><p>{step.description}</p></div></li>)}</ol>
+        <p className={s.processTimeline}>Practice Review: 7–10 days · Development Strategy: within 14 days. Timelines begin once all required materials are received.</p>
       </section>
 
       <section id="consulting-work" className={`${s.section} ${s.workSection}`} aria-labelledby="work-title">
         <div className={`${s.sectionHeading} ${s.galleryHeading}`}><div><h2 id="work-title">Case Studies</h2><p className={s.gallerySubtitle}>Selected exhibitions, curatorial collaborations and public art projects.</p></div><div className={s.galleryTools}><Link href="/exhibitions" className={s.textLink}>View all exhibitions <span aria-hidden>↗</span></Link><p className={s.galleryPosition} aria-live="polite" aria-atomic="true"><span className={s.srOnly}>Project </span>{String(projectPosition + 1).padStart(2, "0")} <span aria-hidden>/</span><span className={s.srOnly}>of</span> {String(PROJECTS.length).padStart(2, "0")}</p></div></div>
         <div className={s.galleryShell}>
-          <button className={`${s.galleryArrow} ${s.galleryPrevious}`} type="button" onClick={() => scrollProjects(-1)} aria-label="Previous curatorial project" aria-controls="curatorial-projects" disabled={projectPosition === 0}>←</button>
           <div ref={galleryRef} id="curatorial-projects" className={s.projects} role="region" aria-label="Selected curatorial projects" aria-describedby="gallery-instructions" tabIndex={0} onKeyDown={galleryKeys} onScroll={updateProjectPosition}>
-          {PROJECTS.map((project) => <article className={s.project} key={project.href}><Link href={project.href} className={s.projectImage} aria-label={`View ${project.title}`}><Image src={project.image} alt={project.alt} fill sizes="(max-width: 760px) 85vw, (max-width: 1100px) 44vw, 30vw" style={{ objectFit: project.fit, objectPosition: project.position }} /></Link><p className={s.projectContext}>{project.context}</p><h3><Link href={project.href}>{project.title}</Link></h3><p className={s.projectRole}>{project.role}</p><p className={s.projectDescription}>{project.description}</p><Link href={project.href} className={s.textLink}>View project <span aria-hidden>↗</span></Link></article>)}
+          {PROJECTS.map((project) => <article className={s.project} key={project.href}><Link href={project.href} className={s.projectImage} aria-label={`View ${project.title}`}><Image src={project.image} alt={project.alt} fill sizes="(max-width: 760px) 92vw, (max-width: 1100px) 46vw, 31vw" style={{ objectFit: project.fit, objectPosition: project.position }} /></Link><p className={s.projectContext}>{project.context}</p><h3><Link href={project.href}>{project.title}</Link></h3><p className={s.projectRole}>{project.role}</p><p className={s.projectDescription}>{project.description}</p><Link href={project.href} className={s.textLink}>View project <span aria-hidden>↗</span></Link></article>)}
           </div>
-          <button className={`${s.galleryArrow} ${s.galleryNext}`} type="button" onClick={() => scrollProjects(1)} aria-label="Next curatorial project" aria-controls="curatorial-projects" disabled={projectPosition === PROJECTS.length - 1}>→</button>
+          <div className={s.galleryControls}>
+            <button className={`${s.galleryArrow} ${s.galleryPrevious}`} type="button" onClick={() => scrollProjects(-1)} aria-label="Previous curatorial project" aria-controls="curatorial-projects" disabled={projectPosition === 0}><Arrow previous /></button>
+            <button className={`${s.galleryArrow} ${s.galleryNext}`} type="button" onClick={() => scrollProjects(1)} aria-label="Next curatorial project" aria-controls="curatorial-projects" disabled={projectPosition === PROJECTS.length - 1}><Arrow /></button>
+          </div>
         </div>
         <p id="gallery-instructions" className={s.srOnly}>Use the previous and next buttons, swipe, or focus this gallery and use the arrow, Home and End keys to explore eight projects.</p>
       </section>

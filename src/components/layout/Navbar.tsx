@@ -2,36 +2,19 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import s from "./navbar.module.css";
+import { ForArtistsMenu } from "./ForArtistsMenu";
 
 const leftNav = [
   { label: "Exhibitions", href: "/exhibitions" },
   { label: "Network", href: "/#network" },
-  { label: "Practice", href: "/practice" },
   { label: "Interview", href: "/interview" },
 ];
 
-const rightNav = [
-  { label: "FINDART ↗", href: "https://www.findartplatform.com/", external: true },
-  { label: "WORKFLOW.ART", href: "/workflow-art" },
-  { label: "Contact", href: "/#contact" },
-];
-
-const mobilePrimaryNav = [
-  { ...leftNav[0], number: "01" },
-  { ...leftNav[1], number: "02" },
-  { ...leftNav[2], number: "03" },
-  { ...leftNav[3], number: "04" },
-  { ...rightNav[2], number: "07" },
-];
-
-const mobileProductNav = [
-  { ...rightNav[0], number: "05" },
-  { ...rightNav[1], number: "06" },
-];
+const contactHref = "/#contact";
 
 const projectCities = [
   "Hong Kong",
@@ -52,6 +35,7 @@ function citySlug(city: string) {
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuTrigger = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
   const onInteriorPage = pathname !== "/";
   const solidNav = scrolled || menuOpen || onInteriorPage;
@@ -67,7 +51,10 @@ export function Navbar() {
     document.body.style.overflow = menuOpen ? "hidden" : "";
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        if (menuOpen) menuTrigger.current?.focus();
+      }
     };
 
     window.addEventListener("keydown", onKeyDown);
@@ -150,29 +137,12 @@ export function Navbar() {
 
           <div className="col-start-3 flex items-center justify-end gap-6">
             <ul className="hidden items-center gap-5 xl:flex 2xl:gap-8">
-              {rightNav.map((item) => (
-                <li key={item.label}>
-                  {"external" in item && item.external ? (
-                    <a
-                      href={item.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={cn(s.desktopLink, "opacity-70 transition-opacity duration-300 hover:opacity-100")}
-                    >
-                      {item.label}
-                    </a>
-                  ) : item.href ? (
-                    <Link href={item.href} className={cn(s.desktopLink, "opacity-70 transition-opacity duration-300 hover:opacity-100")}>
-                      {item.label}
-                    </Link>
-                  ) : (
-                    <span className={cn(s.desktopLink, "opacity-70")}>{item.label}</span>
-                  )}
-                </li>
-              ))}
+              <ForArtistsMenu />
+              <li><Link href={contactHref} className={cn(s.desktopLink, "opacity-70 transition-opacity duration-300 hover:opacity-100")}>Contact</Link></li>
             </ul>
 
             <button
+              ref={menuTrigger}
               type="button"
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
@@ -213,7 +183,7 @@ export function Navbar() {
           >
             <nav className="container-gallery border-t border-black/10">
               <ul>
-                {mobilePrimaryNav.map((item, index) => (
+                {leftNav.map((item, index) => (
                   <motion.li
                     key={item.label}
                     initial={{ opacity: 0, y: 10 }}
@@ -233,41 +203,8 @@ export function Navbar() {
                     </Link>
                   </motion.li>
                 ))}
-              </ul>
-              <ul className="mt-5 border-t border-black/10 pt-1">
-                {mobileProductNav.map((item, index) => (
-                  <motion.li
-                    key={item.label}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 + index * 0.035, duration: 0.3 }}
-                    className="border-b border-black/10"
-                  >
-                    {"external" in item && item.external ? (
-                      <a
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() => setMenuOpen(false)}
-                        className="flex items-center py-[0.85rem]"
-                      >
-                        <span className="min-w-0 font-display text-[1.375rem] font-medium leading-none text-void/70">
-                          {item.label}
-                        </span>
-                      </a>
-                    ) : (
-                      <Link
-                        href={item.href}
-                        onClick={() => setMenuOpen(false)}
-                        className="flex items-center py-[0.85rem]"
-                      >
-                        <span className="min-w-0 font-display text-[1.375rem] font-medium leading-none text-void/70">
-                          {item.label}
-                        </span>
-                      </Link>
-                    )}
-                  </motion.li>
-                ))}
+                <ForArtistsMenu mobile onNavigate={() => setMenuOpen(false)} />
+                <li className="border-b border-black/10"><Link href={contactHref} onClick={() => setMenuOpen(false)} className="flex items-center py-[0.85rem]"><span className="min-w-0 font-display text-[1.75rem] font-medium leading-none">Contact</span></Link></li>
               </ul>
             </nav>
           </motion.div>

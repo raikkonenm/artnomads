@@ -1,0 +1,21 @@
+.desktop, .mobile, .panel, .panel * { background: none; border: 0; border-radius: 0; box-shadow: none; backdrop-filter: none; }
+.desktop::before, .desktop::after, .mobile::before, .mobile::after, .panel::before, .panel::after, .panel *::before, .panel *::after { content: none; background: none; border: 0; box-shadow: none; backdrop-filter: none; }
+.desktop { position: relative; }
+.trigger { display: inline-flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 44px; padding: 0; border: 0; background: transparent; color: inherit; text-align: left; cursor: pointer; }
+.desktop > .trigger { opacity: .7; }
+.desktop > .trigger:hover, .desktop > .trigger[data-active="true"] { opacity: 1; }
+.trigger:focus-visible { outline: 1px solid currentColor; outline-offset: 5px; }
+.chevron { flex-shrink: 0; font-size: 10px; line-height: 1; }
+.desktop .panel { position: absolute; top: 100%; right: 0; z-index: 1; width: max-content; min-width: 100%; padding-top: 12px; color: inherit; text-align: right; visibility: hidden; opacity: 0; pointer-events: none; transition: opacity .16s ease; }
+.desktop .panel[data-open="true"] { visibility: visible; opacity: 1; pointer-events: auto; }
+.list { list-style: none; margin: 0; padding: 0; color: inherit; }
+.resource { display: block; padding: 7px 0; color: inherit; text-decoration: none; white-space: nowrap; }
+.resource:hover .title, .resource:focus-visible .title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.resource:focus-visible { outline: none; }
+.title { display: block; font-size: 14px; font-weight: 500; line-height: 1.4; }
+.mobileTrigger { width: 100%; padding-block: .85rem; font-family: var(--font-sf-display), system-ui, sans-serif; font-size: 1.75rem; font-weight: 500; line-height: 1; }
+.mobile .chevron { font-size: 14px; }
+.mobile .panel[data-open="false"] { display: none; }
+.mobile .list { padding-bottom: 8px; }
+.mobile .resource { min-height: 40px; padding: 8px 0; text-align: left; }
+@media (prefers-reduced-motion: reduce) { .desktop .panel { transition: none; } }

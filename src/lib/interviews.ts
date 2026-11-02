@@ -147,3 +147,9 @@ export const INTERVIEWS: readonly Interview[] = [
   },
   JINGYAN_DING_INTERVIEW,
 ];
+
+export function getLatestInterviews(count = 2) {
+  return [...INTERVIEWS]
+    .sort((first, second) => second.dateTime.localeCompare(first.dateTime) || Number(second.number) - Number(first.number))
+    .slice(0, count);
+}

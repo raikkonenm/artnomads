@@ -6,7 +6,7 @@ export const SERVICES = [
     scopeLabel: "Includes",
     scope: ["Critical assessment of your work and artistic language.", "Portfolio, statement and CV review.", "Website and social media presentation analysis.", "Specific curatorial recommendations."],
     format: "Written, illustrated PDF", pages: "Approx. 15 pages", timelineLabel: "Timeline", timeline: "7–10 days", cta: "Request a Review",
-    image: "/exhibitions/TENÚ/FEATURED WORKS/16.webp", alt: "A close view of a sculptural work from Yasy Bachurina’s TENÚ exhibition", imageHref: "/exhibitions/tenu", imageCredit: "TENÚ · Yasy Bachurina · Bangkok, 2024", position: "50% 50%",
+    image: "/exhibitions/Yasy/2.webp", alt: "A painting from Yasy Bachurina’s Preserved, Unfixed exhibition", imageHref: "/exhibitions/preserved-unfixed", imageCredit: "Preserved, Unfixed · Yasy Bachurina · Seoul, 2026", position: "50% 50%",
   },
   {
     name: "Artist Development Strategy", price: "$350", value: "Artist Development Strategy — $350",
@@ -14,7 +14,7 @@ export const SERVICES = [
     scopeLabel: "Includes",
     scope: ["Complete Artist Practice Review, included in the $350 fee.", "Artistic positioning and professional priorities.", "Tailored 90-day development roadmap.", "Guidance on portfolio development and professional outreach."],
     format: "Written strategy", pages: "Approx. 20–25 pages", timelineLabel: "Timeline", timeline: "Within 14 days", cta: "Request a Strategy",
-    image: "/projects/ad4.webp", alt: "A sculptural work and suspended installation presented together at Art Dubai", imageHref: "/exhibitions/art-dubai-2026", imageCredit: "Natura Naturans, Natura Naturata · Art Dubai, 2026", position: "50% 50%",
+    image: "/exhibitions/Handful of Dust/INSTALLATION VIEWS/119.webp", alt: "A white sculptural work displayed in front of a painting in Handful of Dust", imageHref: "/exhibitions/handful-of-dust", imageCredit: "Handful of Dust · Studiya Gallery · Seoul, 2025", position: "50% 50%",
   },
   {
     name: "Exhibition Development", price: "By enquiry", value: EXHIBITION_SERVICE,
@@ -22,7 +22,7 @@ export const SERVICES = [
     scopeLabel: "Possible scope",
     scope: ["Exhibition concept and narrative.", "Selection and spatial presentation of works.", "Curatorial texts and exhibition proposals.", "Project development and production planning."],
     format: "Individual project collaboration", pages: "", timelineLabel: "Timeline and fee", timeline: "Agreed individually", cta: "Discuss an Exhibition",
-    image: "/exhibitions/Art_Central/9.webp", alt: "A view through Body Is The Foreign Place at Art Central showing the spatial arrangement of paintings", imageHref: "/exhibitions/body-is-the-foreign-place", imageCredit: "Body Is The Foreign Place · Art Central, 2026", position: "50% 50%",
+    image: "/exhibitions/TENÚ/INSTALLATION VIEWS/41.webp", alt: "Visitors gathered around an artwork during TENÚ at Charoen AArt", imageHref: "/exhibitions/tenu", imageCredit: "TENÚ · Charoen AArt · Bangkok, 2024", position: "50% 50%",
   },
 ] as const;
 
@@ -43,7 +43,11 @@ export const NETWORK = [
   { label: "Galleries & institutions", names: ["RARARES Art Gallery", "Studiya Gallery", "Linda Gallery", "White Stone Gallery", "TOKAS"] },
 ];
 
-export const PROCESS = ["Choose your format", "Share your materials", "Receive your review"];
+export const PROCESS = [
+  { title: "Send an enquiry", description: "Choose your service and briefly introduce your artistic practice." },
+  { title: "Share your materials", description: "Send us your portfolio, relevant links and questions. Strategy clients also complete a short strategic brief." },
+  { title: "Receive your report", description: "Get a personalised written curatorial assessment with specific recommendations for your practice." },
+] as const;
 export const PEOPLE = [
   { name: "Eugene Sheidlin", role: "Art Curator, CEO of Art Curatorial Nomads", image: "/practice-review/eugene-sheidlin.webp" },
   { name: "Maria Raikkonen", role: "Art Curator, Founder of FindArt.Platform", image: "/practice-review/maria-raikkonen.webp" },
