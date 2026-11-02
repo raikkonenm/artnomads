@@ -1,10 +1,10 @@
 .section { border-top: 1px solid #0000001a; padding-block: clamp(48px, 5vw, 72px); scroll-margin-top: 96px; }
-.layout { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "heading all" "stories stories"; gap: 32px; max-width: 1120px; }
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "heading all" "stories stories"; gap: 32px; }
 .heading { grid-area: heading; min-width: 0; }
 .heading > p { margin-top: 12px; color: var(--color-steel); font-size: 16px; line-height: 1.6; }
 .stories { display: grid; grid-area: stories; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; }
 .story { display: flex; min-width: 0; flex-direction: column; }
-.image { display: block; aspect-ratio: 4 / 5; overflow: hidden; background: #fff; }
+.image { display: block; aspect-ratio: 16 / 9; overflow: hidden; background: #fff; }
 .image img { width: 100%; height: 100%; object-fit: cover; }
 .body { display: flex; flex: 1; flex-direction: column; padding-top: 28px; }
 .label { margin-bottom: 20px; color: var(--color-steel); font-size: 12px; font-weight: 500; line-height: 1.5; letter-spacing: .08em; text-transform: uppercase; }

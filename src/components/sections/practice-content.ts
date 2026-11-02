@@ -38,26 +38,11 @@ export const PROJECTS = [
   { title: "TENÚ", context: "Charoen AArt · Bangkok · 2024", role: "Solo Exhibition", description: "Yasy Bachurina’s first Thai solo exhibition, with Charoen AArt.", image: "/exhibitions/TENÚ/INSTALLATION VIEWS/38.webp", alt: "A sculptural installation in the window of TENÚ at Charoen AArt, Bangkok", href: "/exhibitions/tenu", position: "50% 50%", fit: "contain" },
   { title: "Handful of Dust", context: "Studiya Gallery · Seoul · 2025", role: "Group Exhibition", description: "A group exhibition on memory and material traces at Studiya.", image: "/exhibitions/Handful of Dust/INSTALLATION VIEWS/124.webp", alt: "A dark sculptural object and paintings arranged in the Handful of Dust exhibition space", href: "/exhibitions/handful-of-dust", position: "50% 50%", fit: "cover" },
 ] as const;
-export const NETWORK = [
-  { label: "Artists", names: ["Ellen Sheidlin", "Yasy Bachurina", "Chunkook Lee", "Orkhan Mammadov", "Maria Koshenkova", "Hwia Kim"] },
-  { label: "Galleries & institutions", names: ["RARARES Art Gallery", "Studiya Gallery", "Linda Gallery", "White Stone Gallery", "TOKAS"] },
-];
-
-export const PROCESS = [
-  { title: "Send an enquiry", description: "Choose your service and briefly introduce your artistic practice." },
-  { title: "Share your materials", description: "Send us your portfolio, relevant links and questions. Strategy clients also complete a short strategic brief." },
-  { title: "Receive your report", description: "Get a personalised written curatorial assessment with specific recommendations for your practice." },
-] as const;
 export const PEOPLE = [
   { name: "Eugene Sheidlin", role: "Art Curator, CEO of Art Curatorial Nomads", image: "/practice-review/eugene-sheidlin.webp" },
   { name: "Maria Raikkonen", role: "Art Curator, Founder of FindArt.Platform", image: "/practice-review/maria-raikkonen.webp" },
 ];
-export const PLATFORMS = [
-  { name: "FindArt.Platform", href: "https://findartplatform.com/", external: true },
-  { name: "Workflow.art", href: "/workflow-art", external: false },
-];
 export const FAQ = [
   { question: "What materials do I need?", answer: "A portfolio PDF or link with 10–15 selected works and links to your website and Instagram, where available. Include your statement, CV and questions if available; the strategy also requires a short strategic brief." },
-  { question: "What format will I receive?", answer: "Both consulting services are delivered as individual written PDFs. Exhibition Development is a separate collaboration with a scope agreed for each project." },
   { question: "Can I ask questions afterwards?", answer: "Yes. Both written services include one round of follow-up questions by email within 14 days after you receive your document." },
 ];

@@ -18,7 +18,7 @@ export function LatestInterviews() {
             {interviews.map(interview => (
               <article className={s.story} key={interview.slug}>
                 <Link href={`/interview/${interview.slug}`} className={s.image} aria-label={`Read interview with ${interview.artist}`}>
-                  <Image src={interview.image.src} alt={interview.image.alt} width={interview.image.width} height={interview.image.height} sizes="(max-width: 760px) calc(100vw - 48px), (max-width: 1023px) 46vw, (max-width: 1287px) 42vw, 536px" />
+                  <Image src={interview.heroImage.src} alt={interview.heroImage.alt} width={interview.heroImage.width} height={interview.heroImage.height} sizes="(max-width: 760px) calc(100vw - 48px), (max-width: 1023px) 46vw, (max-width: 1859px) 42vw, 796px" />
                 </Link>
                 <div className={s.body}>
                   <p className={s.label}>Interview</p>
