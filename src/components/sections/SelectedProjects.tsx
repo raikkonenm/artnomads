@@ -197,7 +197,7 @@ function ArchivePanel() {
 
   return (
     <div className="grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.38fr)] lg:items-stretch xl:gap-10">
-      <div className="sticky top-[76px] z-10 bg-white pb-4 min-[769px]:hidden">
+      <div className="sticky top-[var(--site-header-height)] z-10 bg-white pb-4 min-[769px]:hidden">
         <motion.div
           key={`${activeProject.id}-mobile-image`}
           initial={{ opacity: 0 }}

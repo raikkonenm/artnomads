@@ -1,0 +1,9 @@
+.desktopLink {
+  font-family: var(--font-sf-text), "SF Pro Text", system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}

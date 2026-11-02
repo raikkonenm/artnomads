@@ -187,7 +187,7 @@ export function ExhibitionsPageContent({ selectedCity = null }: { selectedCity?:
   const showCurrent = currentProject ? matchesCity(currentProject, activeCity) : false;
 
   return (
-    <main className="mobile-tight-sections section-light pt-[76px]">
+    <main className="mobile-tight-sections section-light pt-[var(--site-header-height)]">
       <section className="container-gallery pb-10 pt-[var(--spacing-section)] sm:pb-16">
         <div className="grid gap-6 border-b border-black/10 pb-7 sm:gap-8 sm:pb-10 lg:grid-cols-[minmax(14rem,0.36fr)_minmax(0,0.64fr)] lg:items-end">
           <h1 className="font-display text-[clamp(2.55rem,5vw,5.8rem)] font-medium leading-[0.98] tracking-[-0.03em] text-void">

@@ -4,6 +4,7 @@ const footerLinks: { label: string; href: string; external?: boolean }[] = [
   { label: "Exhibitions", href: "/#exhibitions" },
   { label: "Network", href: "/#network" },
   { label: "Practice", href: "/practice" },
+  { label: "Interview", href: "/interview" },
   { label: "FindArt", href: "https://www.findartplatform.com/", external: true },
   { label: "Workflow", href: "/workflow-art" },
   { label: "Contact", href: "/#contact" },

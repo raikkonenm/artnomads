@@ -5,11 +5,13 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import s from "./navbar.module.css";
 
 const leftNav = [
   { label: "Exhibitions", href: "/exhibitions" },
   { label: "Network", href: "/#network" },
   { label: "Practice", href: "/practice" },
+  { label: "Interview", href: "/interview" },
 ];
 
 const rightNav = [
@@ -22,12 +24,13 @@ const mobilePrimaryNav = [
   { ...leftNav[0], number: "01" },
   { ...leftNav[1], number: "02" },
   { ...leftNav[2], number: "03" },
-  { ...rightNav[2], number: "06" },
+  { ...leftNav[3], number: "04" },
+  { ...rightNav[2], number: "07" },
 ];
 
 const mobileProductNav = [
-  { ...rightNav[0], number: "04" },
-  { ...rightNav[1], number: "05" },
+  { ...rightNav[0], number: "05" },
+  { ...rightNav[1], number: "06" },
 ];
 
 const projectCities = [
@@ -84,11 +87,15 @@ export function Navbar() {
             : "border-white/18 bg-transparent text-white"
         )}
       >
-        <nav className="container-gallery grid h-[76px] grid-cols-[1fr_auto_1fr] items-center gap-4">
-          <ul className="hidden items-center gap-8 lg:flex">
+        <nav className="container-gallery grid h-[var(--site-header-height)] grid-cols-[1fr_auto_1fr] items-center gap-4">
+          <ul className="hidden items-center gap-5 xl:flex 2xl:gap-8">
             {leftNav.map((item) => (
               <li key={item.href} className={item.label === "Exhibitions" ? "group relative" : undefined}>
-                <Link href={item.href} className="text-label opacity-70 transition-opacity duration-300 hover:opacity-100">
+                <Link
+                  href={item.href}
+                  aria-current={item.href === "/interview" && pathname.startsWith("/interview") ? "page" : undefined}
+                  className={cn(s.desktopLink, "transition-opacity duration-300 hover:opacity-100", item.href === "/interview" && pathname.startsWith("/interview") ? "opacity-100" : "opacity-70")}
+                >
                   {item.label}
                 </Link>
                 {item.label === "Exhibitions" && (
@@ -142,7 +149,7 @@ export function Navbar() {
           </Link>
 
           <div className="col-start-3 flex items-center justify-end gap-6">
-            <ul className="hidden items-center gap-8 lg:flex">
+            <ul className="hidden items-center gap-5 xl:flex 2xl:gap-8">
               {rightNav.map((item) => (
                 <li key={item.label}>
                   {"external" in item && item.external ? (
@@ -150,16 +157,16 @@ export function Navbar() {
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-label opacity-70 transition-opacity duration-300 hover:opacity-100"
+                      className={cn(s.desktopLink, "opacity-70 transition-opacity duration-300 hover:opacity-100")}
                     >
                       {item.label}
                     </a>
                   ) : item.href ? (
-                    <Link href={item.href} className="text-label opacity-70 transition-opacity duration-300 hover:opacity-100">
+                    <Link href={item.href} className={cn(s.desktopLink, "opacity-70 transition-opacity duration-300 hover:opacity-100")}>
                       {item.label}
                     </Link>
                   ) : (
-                    <span className="text-label opacity-70">{item.label}</span>
+                    <span className={cn(s.desktopLink, "opacity-70")}>{item.label}</span>
                   )}
                 </li>
               ))}
@@ -170,7 +177,7 @@ export function Navbar() {
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((value) => !value)}
-              className="grid h-10 w-10 place-items-center transition-opacity duration-300 hover:opacity-60 lg:hidden"
+              className="grid h-10 w-10 place-items-center transition-opacity duration-300 hover:opacity-60 xl:hidden"
             >
               <span className="relative block h-4 w-5">
                 <motion.span
@@ -202,7 +209,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-40 bg-linen pt-[76px] text-void lg:hidden"
+            className="fixed inset-0 z-40 overflow-y-auto bg-linen pt-[var(--site-header-height)] text-void xl:hidden"
           >
             <nav className="container-gallery border-t border-black/10">
               <ul>
@@ -217,6 +224,7 @@ export function Navbar() {
                     <Link
                       href={item.href}
                       onClick={() => setMenuOpen(false)}
+                      aria-current={item.href === "/interview" && pathname.startsWith("/interview") ? "page" : undefined}
                       className="flex items-center py-[0.85rem]"
                     >
                       <span className="min-w-0 font-display text-[1.75rem] font-medium leading-none">

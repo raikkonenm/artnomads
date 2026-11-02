@@ -21,6 +21,10 @@
 }
 
 @layer base {
+  :root {
+    --site-header-height: 72px;
+  }
+
   *,
   *::before,
   *::after {
