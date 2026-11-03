@@ -364,6 +364,52 @@ export const EXHIBITION_MEDIA_MANIFEST = {
       }
     }
   },
+  "hybrid chronicles": {
+    "sections": {
+      "artists": {
+        "name": "artists",
+        "images": [
+          {
+            "name": "1bab9b51-d37a-48f3-90b5-1170cae555d8.png",
+            "isWide": false
+          },
+          {
+            "name": "3.jpg",
+            "isWide": false
+          }
+        ]
+      },
+      "installation": {
+        "name": "installation",
+        "images": [
+          {
+            "name": "1.jpg",
+            "isWide": false
+          },
+          {
+            "name": "2.jpg",
+            "isWide": false
+          },
+          {
+            "name": "3b977aa6-bc4c-4288-a25f-b829ea7951c3.png",
+            "isWide": false
+          },
+          {
+            "name": "4.jpg",
+            "isWide": false
+          },
+          {
+            "name": "5.jpg",
+            "isWide": false
+          },
+          {
+            "name": "6.jpg",
+            "isWide": false
+          }
+        ]
+      }
+    }
+  },
   "Inner Landscapes": {
     "sections": {
       "artist": {

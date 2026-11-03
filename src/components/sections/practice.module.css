@@ -14,6 +14,8 @@
 .heroDescription { max-width: 39ch; margin-top: 24px !important; color: var(--preview-muted); font-size: 17px; line-height: 1.65; }
 .heroCopy > .button { margin-top: 28px; }
 .heroCopy > .textLink { display: flex; width: fit-content; margin-top: 12px; font-size: 14px; }
+.heroTextCta { display: inline-flex; align-items: baseline; gap: 6px; margin-top: 30px; font-size: 17px; font-weight: 500; line-height: 1.5; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 4px; transition: text-decoration-color .18s ease; }
+.heroTextCta:hover { text-decoration-color: currentColor; }
 .heroFigure { min-width: 0; margin: 0; }
 .heroCaption { display: block; min-height: 54px; padding-block: 2px; font-size: 12px; line-height: 1.6; color: var(--preview-muted); }
 .heroCaption > span { color: #171717; }
@@ -27,6 +29,7 @@
 .heroFigure figcaption a { display: block; padding-block: 4px; }
 .heroFigure figcaption a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .heroFigure figcaption span { color: #171717; }
+.viewProject { margin-top: 6px; font-size: 11px; }
 .button { display: inline-flex; gap: 22px; align-items: center; justify-content: space-between; min-height: 50px; max-width: 100%; padding: 15px 21px; border: 1px solid #171717; background: #171717; color: #fff; font: inherit; font-size: 14px; font-weight: 500; line-height: 1.4; text-align: left; text-decoration: none; cursor: pointer; transition: background-color .18s ease, color .18s ease; }
 .button > span:first-child { min-width: 0; }
 .button > span:last-child { flex-shrink: 0; }

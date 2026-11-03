@@ -93,17 +93,19 @@ export function PracticePageContent() {
           <p className={s.eyebrow}>Artist advisory</p>
           <h1 id="consulting-title">A curatorial perspective<br className={s.desktopBreak} /> on your practice.</h1>
           <p className={s.heroDescription}>Written reviews, development strategies and exhibition development for contemporary artists.</p>
-          <a href="#consulting-formats" className={s.button}><span>Explore our services</span><span aria-hidden>↓</span></a>
-          <a href="#consulting-work" className={s.textLink}>Selected curatorial work <span aria-hidden>↓</span></a>
+          <a href="#consulting-formats" className={s.heroTextCta}>Explore our services <span aria-hidden>↓</span></a>
         </div>
         <figure className={s.heroFigure}>
           <Link href={HERO_PROJECT.href} className={s.heroImage} aria-label={`View ${HERO_PROJECT.title}`}><Image src={HERO_PROJECT.image} alt={HERO_PROJECT.alt} fill priority sizes="(max-width: 760px) 100vw, (max-width: 1400px) 55vw, 680px" /></Link>
-          <figcaption className={s.heroCaption}><Link href={HERO_PROJECT.href}><span>{HERO_PROJECT.title}</span><br />{HERO_PROJECT.context}</Link></figcaption>
+          <figcaption className={s.heroCaption}>
+            <span>{HERO_PROJECT.title}</span><br />{HERO_PROJECT.context}
+            <Link href={HERO_PROJECT.href} className={s.viewProject}>View project ↗</Link>
+          </figcaption>
         </figure>
       </section>
 
       <section id="consulting-formats" className={s.section} aria-labelledby="formats-title">
-        <div className={s.sectionHeading}><h2 id="formats-title">Services</h2><p className={s.serviceArchiveNote}>Exhibition and artwork documentation from the ACN archive.</p></div>
+        <div className={s.sectionHeading}><h2 id="formats-title">Services</h2></div>
         <div className={s.services}>{SERVICES.map((offer, index) => (
           <article className={s.service} key={offer.name} aria-labelledby={`service-${index + 1}-title`}>
             <Link href={offer.imageHref} className={s.serviceImage} aria-label={`View exhibition: ${offer.imageCredit}`} title={offer.imageCredit}><Image src={offer.image} alt={offer.alt} fill sizes="(max-width: 760px) 100vw, 32vw" style={{ objectPosition: offer.position }} /></Link>
