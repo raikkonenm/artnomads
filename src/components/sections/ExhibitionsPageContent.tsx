@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { PROJECTS, type Project } from "@/lib/data";
 import { getExhibitionHref } from "@/lib/exhibition-pages";
+import { PRESERVED_UNFIXED, PRESERVED_UNFIXED_VIEWS } from "@/lib/preserved-unfixed";
 
 const CITY_FILTERS = [
   "HONG KONG",
@@ -16,6 +17,7 @@ const CITY_FILTERS = [
 ];
 
 const PREVIOUS_PROJECT_IDS = [
+  "natura-naturans",
   "body-foreign-place",
   "handful-of-dust",
   "stream-of-consciousness",
@@ -80,7 +82,7 @@ function projectHref(project: Project) {
   return getExhibitionHref(project.id) ?? (project.href === "#projects" ? "/#projects" : project.href);
 }
 
-function matchesCity(project: Project, city: string | null) {
+function matchesCity(project: Pick<Project, "city">, city: string | null) {
   if (!city) return true;
   return project.city.toLowerCase().includes(city.toLowerCase());
 }
@@ -126,18 +128,21 @@ function ExhibitionCard({ project }: { project: Project }) {
   );
 }
 
-function CurrentlySection({ project }: { project: Project }) {
+function LatestExhibitionSection() {
+  const exhibition = PRESERVED_UNFIXED;
+  const image = PRESERVED_UNFIXED_VIEWS[0];
+
   return (
-    <section className="border-t border-black/10 pb-10 pt-[var(--spacing-section)] sm:py-[var(--spacing-section)]">
+    <section aria-label="Latest exhibition" className="pb-10 pt-8 sm:pb-12 sm:pt-10">
       <div className="container-gallery">
         <h2 className="text-label text-void/45">LATEST</h2>
 
-        <div className="mt-8 grid gap-8 sm:mt-10 sm:gap-10 lg:grid-cols-[minmax(0,1.18fr)_minmax(20rem,0.72fr)] lg:gap-14 xl:gap-18">
-          <Link href={projectHref(project)} className="group block">
+        <div className="mt-6 grid gap-8 sm:mt-8 sm:gap-10 lg:grid-cols-[minmax(0,1.18fr)_minmax(20rem,0.72fr)] lg:gap-14 xl:gap-18">
+          <Link href={exhibition.href} className="group block">
             <div className="relative aspect-[16/10] overflow-hidden bg-white">
               <Image
-                src="/images/hero-art-dubai.webp"
-                alt={project.imageAlt}
+                src={image.src}
+                alt={image.alt}
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 56vw"
@@ -146,26 +151,26 @@ function CurrentlySection({ project }: { project: Project }) {
             </div>
           </Link>
 
-          <div className="flex flex-col justify-between border-t border-black/10 pt-6 lg:border-t-0 lg:pt-0">
+          <div className="flex flex-col border-t border-black/10 pt-6 lg:border-t-0 lg:pt-0">
             <div>
-              <p className="text-label text-void/45">Art Dubai / Dubai / 2026</p>
+              <p className="text-label text-void/45">{exhibition.venue} / {exhibition.city} / {exhibition.dates.slice(-4)}</p>
               <h3 className="mt-8 font-display text-[clamp(2rem,3.35vw,4.15rem)] font-medium leading-[0.98] tracking-[-0.03em] text-void">
-                {project.title}
+                <Link href={exhibition.href} className="transition-opacity duration-300 hover:opacity-60">{exhibition.title}</Link>
               </h3>
             </div>
 
             <div className="mt-8 grid gap-5 sm:mt-10 sm:gap-7">
               <div>
-                <p className="text-label mb-2 text-void/35">Artists</p>
-                <p className="text-sm leading-relaxed text-void/62">Fatma Lootah / Chunkook Lee</p>
+                <p className="text-label mb-2 text-void/35">Artist</p>
+                <p className="text-sm leading-relaxed text-void/62">{exhibition.artist}</p>
               </div>
               <div>
-                <p className="text-label mb-2 text-void/35">Collaborator</p>
-                <p className="text-sm leading-relaxed text-void/62">RARARES Art Gallery</p>
+                <p className="text-label mb-2 text-void/35">Location</p>
+                <p className="text-sm leading-relaxed text-void/62">{exhibition.venue}<br />{exhibition.city}</p>
               </div>
               <div>
                 <p className="text-label mb-2 text-void/35">Dates</p>
-                <p className="text-sm leading-relaxed text-void/62">14–17 May 2026</p>
+                <p className="text-sm leading-relaxed text-void/62">{exhibition.dates}</p>
               </div>
             </div>
           </div>
@@ -177,19 +182,18 @@ function CurrentlySection({ project }: { project: Project }) {
 
 export function ExhibitionsPageContent({ selectedCity = null }: { selectedCity?: string | null }) {
   const activeCity = CITY_FILTERS.find((city) => citySlug(city) === selectedCity) ?? null;
-  const currentProject = findProject("natura-naturans");
 
   const previousProjects = PREVIOUS_PROJECT_IDS.map(findProject)
     .filter((project): project is Project => Boolean(project))
     .sort((a, b) => yearValue(b) - yearValue(a));
 
   const visiblePrevious = previousProjects.filter((project) => matchesCity(project, activeCity));
-  const showCurrent = currentProject ? matchesCity(currentProject, activeCity) : false;
+  const showCurrent = matchesCity(PRESERVED_UNFIXED, activeCity);
 
   return (
     <main className="mobile-tight-sections section-light pt-[var(--site-header-height)]">
-      <section className="container-gallery pb-10 pt-[var(--spacing-section)] sm:pb-16">
-        <div className="grid gap-6 border-b border-black/10 pb-7 sm:gap-8 sm:pb-10 lg:grid-cols-[minmax(14rem,0.36fr)_minmax(0,0.64fr)] lg:items-end">
+      <section className="container-gallery pt-10 sm:pt-12">
+        <div className="grid gap-6 border-b border-black/10 pb-6 sm:gap-8 sm:pb-8 lg:grid-cols-[minmax(14rem,0.36fr)_minmax(0,0.64fr)] lg:items-end">
           <h1 className="font-display text-[clamp(2.55rem,5vw,5.8rem)] font-medium leading-[0.98] tracking-[-0.03em] text-void">
             Exhibitions
           </h1>
@@ -211,14 +215,14 @@ export function ExhibitionsPageContent({ selectedCity = null }: { selectedCity?:
         </div>
       </section>
 
-      {currentProject && showCurrent && <CurrentlySection project={currentProject} />}
+      {showCurrent && <LatestExhibitionSection />}
 
-      <section className="border-t border-black/10 pb-[var(--spacing-section)] pt-10 sm:py-[var(--spacing-section)]">
+      <section className={`${showCurrent ? "border-t border-black/10 " : ""}pb-14 pt-8 sm:pb-16 sm:pt-10`}>
         <div className="container-gallery">
           <h2 className="text-label text-void/45">PREVIOUS EXHIBITIONS</h2>
 
           {visiblePrevious.length > 0 ? (
-            <div className="mt-8 grid gap-x-10 gap-y-12 sm:mt-10 sm:gap-y-16 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-14">
+            <div className="mt-6 grid gap-x-10 gap-y-12 sm:mt-8 sm:gap-y-16 md:grid-cols-2 lg:grid-cols-3 xl:gap-x-14">
               {visiblePrevious.map((project) => (
                 <ExhibitionCard key={project.id} project={project} />
               ))}

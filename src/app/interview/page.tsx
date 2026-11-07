@@ -36,7 +36,7 @@ export default function InterviewPage() {
                   </div>
                   <h2>{interview.title}</h2>
                   <p className={s.cardExcerpt}>{interview.excerpt}</p>
-                  <p className={s.cardDate}>Email conversation · <time dateTime={interview.dateTime}>{interview.date}</time></p>
+                  <p className={s.cardDate}><time dateTime={interview.dateTime}>{interview.date}</time></p>
                 </Link>
               </article>
             ))}
