@@ -98,16 +98,6 @@
   border-bottom: 1px solid #d9d9d9;
 }
 
-.cardMeta > span:last-child {
-  font-size: 24px;
-  line-height: 1;
-  transition: transform 200ms ease;
-}
-
-.cardLink:hover .cardMeta > span:last-child {
-  transform: translate(2px, -2px);
-}
-
 .card h2 {
   margin-top: 17px;
   font-size: clamp(25px, 2.3vw, 36px);
@@ -565,6 +555,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cardImage img, .cardMeta > span:last-child { transition: none; }
-  .cardLink:hover .cardImage img, .cardLink:hover .cardMeta > span:last-child { transform: none; }
+  .cardImage img { transition: none; }
+  .cardLink:hover .cardImage img { transform: none; }
 }

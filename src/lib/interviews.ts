@@ -1,5 +1,6 @@
 import type { Interview, InterviewImage, InterviewQuestion } from "./interview-types";
 import { JINGYAN_DING_INTERVIEW } from "./jingyan-ding-interview";
+import { ANGELA_LEYVA_INTERVIEW } from "./angela-leyva-interview";
 
 export type { Interview, InterviewImage, InterviewQuestion } from "./interview-types";
 
@@ -146,6 +147,7 @@ export const INTERVIEWS: readonly Interview[] = [
     editorNote: "Questions and answers have been edited for length and clarity. The Shanghai presentation is described by the artist; check the venue’s announcement for visitor information.",
   },
   JINGYAN_DING_INTERVIEW,
+  ANGELA_LEYVA_INTERVIEW,
 ];
 
 export function getLatestInterviews(count = 2) {

@@ -32,7 +32,6 @@ export default function InterviewPage() {
                   </div>
                   <div className={s.cardMeta}>
                     <span>{interview.artist}</span>
-                    <span aria-hidden="true">↗</span>
                   </div>
                   <h2>{interview.title}</h2>
                   <p className={s.cardExcerpt}>{interview.excerpt}</p>
